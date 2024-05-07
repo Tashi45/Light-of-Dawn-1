@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
 
     private float horizontal;
-    private float speed = 8f;
+    private float speed = 5f;
     public float jumpingPower = 5f;
     private bool isFacingRight = true;
 
@@ -122,7 +122,8 @@ public class PlayerMovement : MonoBehaviour
             isWallSliding = true;
 
             
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y > -wallSlidingSpeed ? rb.velocity.y : -wallSlidingSpeed);
+
 
             
             rb.velocity = new Vector2(rb.velocity.x * 0.95f, rb.velocity.y);  
