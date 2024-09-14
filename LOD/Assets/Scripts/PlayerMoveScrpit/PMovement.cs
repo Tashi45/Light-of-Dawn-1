@@ -106,7 +106,7 @@ public class PMovement : MonoBehaviour
         }
         
         if (col.onWall && Input.GetButtonDown("Jump")) {
-            Debug.Log("Wall jump detected!");
+            //Debug.Log("Wall jump detected!");
             Jump(Vector2.up * 1f, true); 
         }
     }
