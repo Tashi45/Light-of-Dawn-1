@@ -13,13 +13,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
 
     private float horizontal;
-    private float speed = 8f;
+    private float speed = 5f;
     public float jumpingPower = 5f;
     private bool isFacingRight = true;
 
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
+
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 24f;
+    private float dashingPower = 5f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
@@ -49,9 +52,15 @@ public class PlayerMovement : MonoBehaviour
         {
             doubleJump = false;
             canWallJump = true;
+            
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (coyoteTimeCounter > 0f && Input.GetButtonDown("Jump"))
         {
             if (IsGrounded() || doubleJump)
             {
@@ -69,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+
+            coyoteTimeCounter = 0f;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
