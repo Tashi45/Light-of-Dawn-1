@@ -19,9 +19,8 @@ public class PMovement : MonoBehaviour
     
     public float speed = 8f;
     public float jumpForce = 5f;
-    public float slideSpeed = 3;
-    public float wallJumpLerp = 10;
-    public float dashSpeed = 20;
+    public float slideSpeed = 5;
+    public float wallGrabTime = 1f;
 
     public bool canMove;
     public bool wallSlideing;
@@ -62,7 +61,7 @@ public class PMovement : MonoBehaviour
             isDashing = true;
             canDash = false;
             trailRenderer.emitting = true;
-            dashingDir = new Vector2(x, Input.GetAxisRaw("Vertical"));
+            dashingDir = new Vector2(x, 0);
             if (dashingDir == Vector2.zero)
             {
                 dashingDir = new Vector2(transform.localScale.x, 0);
@@ -78,7 +77,7 @@ public class PMovement : MonoBehaviour
         }
 
         if(wallGrab) {
-            rb.velocity = new Vector2(rb.velocity.x, y * speed);
+            rb.velocity = new Vector2(rb.velocity.x, 0);
         }
 
         if(col.onWall && !col.onGround) {
@@ -99,21 +98,20 @@ public class PMovement : MonoBehaviour
             {
                 Jump(Vector2.up, false);
             }
-            if(col.onWall && !col.onGround) 
+            if(col.onWall && !col.onGround)
             {
                 wallJump();
             }
         }
         
         if (col.onWall && Input.GetButtonDown("Jump")) {
-            //Debug.Log("Wall jump detected!");
+            Debug.Log("Wall jump detected!");
             Jump(Vector2.up * 1f, true); 
         }
     }
 
     private void wallSlide() {
         rb.velocity = new Vector2(rb.velocity.x, -slideSpeed);
-    
     }
 
     private void Walk(Vector2 dir)
@@ -139,26 +137,20 @@ public class PMovement : MonoBehaviour
         isDashing = false;
     }
 
-    /*private void Dash(float x, float y)
-    {
-        wallJumped = true;
-        rb.velocity = Vector2.zero;
-        rb.velocity += new Vector2(x, y).normalized * 30;
-    }*/
-
     private void Jump(Vector2 dir, bool wall) {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
     }
 
-    private void wallJump() {
+    private void wallJump()
+    {
 
         StartCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
     
         Vector2 wallDir = col.onRightWall ? Vector2.left : Vector2.right;
 
-        float wallJumpHorizontalForce = 0;
+        float wallJumpHorizontalForce = 2;
         float horizontalForce = wallDir.x * wallJumpHorizontalForce;
         float verticalForce = jumpForce;
 
