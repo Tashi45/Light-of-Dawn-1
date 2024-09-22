@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 	//Scriptable object which holds all the player's movement parameters. If you don't want to use it
 	//just paste in all the parameters, though you will need to manuly change all references in this script
 	public PlayerData Data;
+	public Animator animator;
+	private float horizontalMove = 0f;
 
 	#region COMPONENTS
     public Rigidbody2D RB { get; private set; }
@@ -130,12 +132,15 @@ public class PlayerMovement : MonoBehaviour
 			//Ground Check
 			if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer)) //checks if set box overlaps with ground
 			{
+				animator.SetBool("IsJump",false);
+				animator.SetBool("WallSlide",false);
 				if(LastOnGroundTime < -0.1f)
                 {
-					//AnimHandler.justLanded = true;
+	                //AnimHandler.justLanded = true;
                 }
 
 				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+				
             }		
 
 			//Right Wall Check
@@ -183,6 +188,8 @@ public class PlayerMovement : MonoBehaviour
 				_isJumpCut = false;
 				_isJumpFalling = false;
 				Jump();
+				
+				animator.SetBool("IsJump",true);
 
 				//AnimHandler.startedJumping = true;
 			}
@@ -296,6 +303,7 @@ public class PlayerMovement : MonoBehaviour
 		//Handle Slide
 		if (IsSliding)
 			Slide();
+		
     }
 
     #region INPUT CALLBACKS
@@ -347,6 +355,8 @@ public class PlayerMovement : MonoBehaviour
 		float targetSpeed = _moveInput.x * Data.runMaxSpeed;
 		//We can reduce are control using Lerp() this smooths changes to are direction and speed
 		targetSpeed = Mathf.Lerp(RB.velocity.x, targetSpeed, lerpAmount);
+		horizontalMove = Input.GetAxisRaw("Horizontal") *targetSpeed;
+		animator.SetFloat("PlayerSpeed",horizontalMove);
 
 		#region Calculate AccelRate
 		float accelRate;
@@ -506,6 +516,7 @@ public class PlayerMovement : MonoBehaviour
 	#region OTHER MOVEMENT METHODS
 	private void Slide()
 	{
+		animator.SetBool("WallSlide",true);
 		//We remove the remaining upwards Impulse to prevent upwards sliding
 		if(RB.velocity.y > 0)
 		{
@@ -565,6 +576,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public bool CanSlide()
     {
+	    
 		if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && !IsDashing && LastOnGroundTime <= 0)
 			return true;
 		else
