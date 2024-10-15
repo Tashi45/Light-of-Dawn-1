@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 	//just paste in all the parameters, though you will need to manuly change all references in this script
 	public PlayerData Data;
 	public Animator animator;
+	public ParticleSystem dust; //Dust effect variable
 	private float horizontalMove = 0f;
 	
 
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     #region LAYERS & TAGS
     [Header("Layers & Tags")]
 	[SerializeField] private LayerMask _groundLayer;
+    
 	#endregion
 
     private void Awake()
@@ -206,6 +208,7 @@ public class PlayerMovement : MonoBehaviour
 
 				WallJump(_lastWallJumpDir);
 			}
+
 		}
 		#endregion
 
@@ -220,9 +223,8 @@ public class PlayerMovement : MonoBehaviour
 				_lastDashDir = _moveInput;
 			else
 				_lastDashDir = IsFacingRight ? Vector2.right : Vector2.left;
-
-
-
+			
+			
 			IsDashing = true;
 			IsJumping = false;
 			IsWallJumping = false;
@@ -359,6 +361,12 @@ public class PlayerMovement : MonoBehaviour
 		targetSpeed = Mathf.Lerp(RB.velocity.x, targetSpeed, lerpAmount);
 		horizontalMove = Input.GetAxisRaw("Horizontal") *targetSpeed;
 		animator.SetFloat("PlayerSpeed",horizontalMove);
+		if (horizontalMove >= 6 && !IsJumping && !_isJumpFalling  &&!IsDashing)
+		{
+			CreateDust(); //create dust
+		}
+		
+
 
 		#region Calculate AccelRate
 		float accelRate;
@@ -413,6 +421,7 @@ public class PlayerMovement : MonoBehaviour
 		scale.x *= -1;
 		transform.localScale = scale;
 
+		CreateDust(); //DustEffect
 		IsFacingRight = !IsFacingRight;
 	}
     #endregion
@@ -433,6 +442,7 @@ public class PlayerMovement : MonoBehaviour
 			force -= RB.velocity.y;
 
 		RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+		CreateDust(); //Dust Effect
 		#endregion
 	}
 
@@ -597,6 +607,17 @@ public class PlayerMovement : MonoBehaviour
 		Gizmos.DrawWireCube(_backWallCheckPoint.position, _wallCheckSize);
 	}
     #endregion
+
+    #region CreateDust
+
+    //PaulPak Method addon
+    void CreateDust()
+    {
+	    dust.Play();
+    }
+
+    #endregion
+    
 }
 
 // created by Dawnosaur :D

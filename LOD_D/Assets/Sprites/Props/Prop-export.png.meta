@@ -1,0 +1,712 @@
+fileFormatVersion: 2
+guid: bb68dd3d6703a4f49819cf8d9f23000e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -154552062489173753
+    second: Prop-export_0
+  - first:
+      213: 8948556234376245171
+    second: Prop-export_1
+  - first:
+      213: -6248557306631395122
+    second: Prop-export_2
+  - first:
+      213: 8300808737912571162
+    second: Prop-export_3
+  - first:
+      213: -7395252300226958113
+    second: Prop-export_4
+  - first:
+      213: 8876925768358547496
+    second: Prop-export_5
+  - first:
+      213: 1403601008595327985
+    second: Prop-export_6
+  - first:
+      213: -3589406597193367806
+    second: Prop-export_7
+  - first:
+      213: 6785707349799504102
+    second: Prop-export_8
+  - first:
+      213: -8865321328646209238
+    second: Prop-export_9
+  - first:
+      213: -8373590070545377525
+    second: Prop-export_10
+  - first:
+      213: 1885695646488419917
+    second: Prop-export_11
+  - first:
+      213: 8436528482298911474
+    second: Prop-export_12
+  - first:
+      213: -6789423235633607257
+    second: Prop-export_13
+  - first:
+      213: -8181667324324190556
+    second: Prop-export_14
+  - first:
+      213: 3094855913266813698
+    second: Prop-export_15
+  - first:
+      213: -4570356516427110635
+    second: Prop-export_16
+  - first:
+      213: 419142470143578468
+    second: Prop-export_17
+  - first:
+      213: -7483435453786039636
+    second: Prop-export_18
+  - first:
+      213: -1178611006761783932
+    second: Prop-export_19
+  - first:
+      213: -4490853476193030720
+    second: Prop-export_20
+  - first:
+      213: -3296041037603088551
+    second: Prop-export_21
+  - first:
+      213: 1056270358686475436
+    second: Prop-export_22
+  - first:
+      213: -8222997803019506100
+    second: Prop-export_23
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Prop-export_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 491
+        width: 460
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7016700d7bbeaddf0800000000000000
+      internalID: -154552062489173753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_1
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 795
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bf6a92db78af2c70800000000000000
+      internalID: 8948556234376245171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_2
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 794
+        width: 205
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec860936c3aa849a0800000000000000
+      internalID: -6248557306631395122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_3
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 625
+        width: 92
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15ccbb4195623370800000000000000
+      internalID: 8300808737912571162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_4
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 626
+        width: 114
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdce494f639ce5990800000000000000
+      internalID: -7395252300226958113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_5
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 622
+        width: 112
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820d58054fc213b70800000000000000
+      internalID: 8876925768358547496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_6
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 460
+        width: 74
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fb54b34ea79a7310800000000000000
+      internalID: 1403601008595327985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_7
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 494
+        width: 66
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f78d3a7bddf2ec0800000000000000
+      internalID: -3589406597193367806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_8
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 494
+        width: 68
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e88e86e1ecab2e50800000000000000
+      internalID: 6785707349799504102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_9
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 492
+        width: 87
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a21495ad83d08f480800000000000000
+      internalID: -8865321328646209238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_10
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 373
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07976e22380bcb80800000000000000
+      internalID: -8373590070545377525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_11
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 318
+        width: 55
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e517b13365b2a10800000000000000
+      internalID: 1885695646488419917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_12
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 370
+        width: 93
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fa54ecb4f1941570800000000000000
+      internalID: 8436528482298911474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_13
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 370
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad86420a8f17c1a0800000000000000
+      internalID: -6789423235633607257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_14
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 368
+        width: 90
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a66c37bae0e47e80800000000000000
+      internalID: -8181667324324190556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_15
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 229
+        width: 258
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b194d4e0323fa20800000000000000
+      internalID: 3094855913266813698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_16
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 242
+        width: 94
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 517687d86f4d290c0800000000000000
+      internalID: -4570356516427110635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_17
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 240
+        width: 39
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 461103b1bd711d500800000000000000
+      internalID: 419142470143578468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_18
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 114
+        width: 63
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caad48d8a1f752890800000000000000
+      internalID: -7483435453786039636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_19
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 32
+        width: 96
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d299da88bb4afe0800000000000000
+      internalID: -1178611006761783932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_20
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 32
+        width: 26
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cdaf259e884da1c0800000000000000
+      internalID: -4490853476193030720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_21
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 111
+        width: 123
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957de84b32c1242d0800000000000000
+      internalID: -3296041037603088551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_22
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 114
+        width: 46
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca4284c7b40a8ae00800000000000000
+      internalID: 1056270358686475436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop-export_23
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 110
+        width: 60
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e6432c01b02ed80800000000000000
+      internalID: -8222997803019506100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 36cf5b5dc1c270c42aa268875898f379
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Prop-export_0: -154552062489173753
+      Prop-export_1: 8948556234376245171
+      Prop-export_10: -8373590070545377525
+      Prop-export_11: 1885695646488419917
+      Prop-export_12: 8436528482298911474
+      Prop-export_13: -6789423235633607257
+      Prop-export_14: -8181667324324190556
+      Prop-export_15: 3094855913266813698
+      Prop-export_16: -4570356516427110635
+      Prop-export_17: 419142470143578468
+      Prop-export_18: -7483435453786039636
+      Prop-export_19: -1178611006761783932
+      Prop-export_2: -6248557306631395122
+      Prop-export_20: -4490853476193030720
+      Prop-export_21: -3296041037603088551
+      Prop-export_22: 1056270358686475436
+      Prop-export_23: -8222997803019506100
+      Prop-export_3: 8300808737912571162
+      Prop-export_4: -7395252300226958113
+      Prop-export_5: 8876925768358547496
+      Prop-export_6: 1403601008595327985
+      Prop-export_7: -3589406597193367806
+      Prop-export_8: 6785707349799504102
+      Prop-export_9: -8865321328646209238
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
