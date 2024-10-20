@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 	public PlayerData Data;
 	public Animator animator;
 	public ParticleSystem dust; //Dust effect variable
+	public ParticleSystem landingDust;
 	private float horizontalMove = 0f;
 	
 
@@ -442,6 +443,8 @@ public class PlayerMovement : MonoBehaviour
 			force -= RB.velocity.y;
 
 		RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+		
+		
 		CreateDust(); //Dust Effect
 		#endregion
 	}
@@ -557,7 +560,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanJump()
     {
-		return LastOnGroundTime > 0 && !IsJumping;
+	    return LastOnGroundTime > 0 && !IsJumping;
     }
 
 	private bool CanWallJump()
@@ -614,6 +617,11 @@ public class PlayerMovement : MonoBehaviour
     void CreateDust()
     {
 	    dust.Play();
+    }
+
+    void CreateLandingDust()
+    {
+	    landingDust.Play();
     }
 
     #endregion

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public float invulnerabilityDuration;
     public float knockbackForce = 5f;
     public Image healthBar;
+    public Animator animator;
+    public Rigidbody2D rb;
     
     // Start is called before the first frame update
     void Start()
@@ -31,13 +34,16 @@ public class PlayerHealth : MonoBehaviour
             invulnerabilityDuration -= Time.deltaTime;
             if (invulnerabilityDuration <= 0)
             {
+                animator.SetBool("IsHurt",false);
                 isInvulnerable = false;
             }
         }
 
-        if (health == 0)
+        if (health <= 0)
         {
-            Destroy(gameObject);
+           
+            Die();
+            //Destroy(gameObject);
         }
     }
     
@@ -51,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     Debug.Log("-20 HP");
                     health -= bDamage.damange;
+                    animator.SetBool("IsHurt",true);
                 }
                 Vector2 knockbackDirection = transform.position - other.transform.position;
                 knockbackDirection.Normalize();
@@ -58,7 +65,16 @@ public class PlayerHealth : MonoBehaviour
                 GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
                 isInvulnerable = true;
                 invulnerabilityDuration = 0.5f;
+                
             }
         }
+    }
+
+    private void Die()
+    {
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        animator.SetBool("IsDead",true);
     }
 }
