@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NumpadInteraction : MonoBehaviour
+public class Interaction : MonoBehaviour
 {
     public GameObject objectToActivate; // อ้างอิงถึง GameObject ที่จะเปิด
     public float interactionDistance = 2f; // ระยะห่างที่สามารถโต้ตอบได้

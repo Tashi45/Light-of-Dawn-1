@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8758422318573003727}
   - component: {fileID: 9023573645734115818}
-  - component: {fileID: 7372283910568944117}
+  - component: {fileID: 7878765763674683557}
   m_Layer: 0
-  m_Name: Numpad
+  m_Name: InteractionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7372283910568944117
+--- !u!114 &7878765763674683557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068484149693232587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efb56c7a9c5ac542a81de52245a6607, type: 3}
+  m_Script: {fileID: 11500000, guid: 5538d7a47bc32c94a86577e6f89c8cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectToActivate: {fileID: 0}

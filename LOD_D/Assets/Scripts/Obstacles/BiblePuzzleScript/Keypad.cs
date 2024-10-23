@@ -6,21 +6,23 @@ using UnityEngine.UI;
 
 public class Keypad : MonoBehaviour
 {
-    public Animator animator;
     [SerializeField] private Text Ans;
     public GameObject Door;
+    
+    /*public GameObject Player;
+    private PlayerMovement playerMovement;*/
 
     private string Answer = "123456";
-
-    public void Start()
-    {
-      
-    }
-
-
+    private bool isCorrect = false;
+    private bool isCooldown = false;
+    
+    
     public void Number(int number)
     {
-        Ans.text += number.ToString();
+        if (!isCorrect && !isCooldown)
+        {
+            Ans.text += number.ToString();
+        }
     }
 
     public void Execute()
@@ -28,17 +30,34 @@ public class Keypad : MonoBehaviour
         if (Ans.text == Answer)
         {
             Ans.text = "CORRECT";
-            animator.SetBool("IsOpen",true);
-            //Door.SetActive(false);
+            Door.SetActive(false);
+            isCorrect = true;
+            StartCoroutine(DisableKeypad());
+            
         }
         else
         {
-          Ans.text = "INCORRECT";
+          StartCoroutine(IncorrectCooldown()); 
         }
     }
 
-    public void cleanAns()
+    public void Reset()
     {
         Ans.text = "";
+    }
+
+    private IEnumerator DisableKeypad()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
+    }
+    
+    private IEnumerator IncorrectCooldown()
+    {
+        Ans.text = "INCORRECT";
+        isCooldown = true;
+        yield return new WaitForSeconds(1f);
+        Ans.text = ""; // ล้างข้อความเพื่อให้ใส่รหัสใหม่
+        isCooldown = false;
     }
 }
