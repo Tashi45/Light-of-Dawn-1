@@ -17,7 +17,7 @@ public class SlidingDoor : MonoBehaviour
     private void Start()
     {
         closedPosition = transform.position;
-        openPosition = closedPosition + Vector3.up * openDistance;
+        openPosition = closedPosition + Vector3.left * openDistance;
     }
 
     private void Update()
