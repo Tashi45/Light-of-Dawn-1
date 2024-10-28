@@ -9,6 +9,7 @@ TagManager:
   - Rock
   - Ground
   - Key
+  - Spike
   layers:
   - Default
   - TransparentFX

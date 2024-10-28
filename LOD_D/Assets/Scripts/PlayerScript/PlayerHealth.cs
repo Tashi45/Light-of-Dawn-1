@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,17 +47,23 @@ public class PlayerHealth : MonoBehaviour
             //Destroy(gameObject);
         }
     }
-    
+
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Vine"))
+        if (other.gameObject.CompareTag("Vine") || other.gameObject.CompareTag("Spike"))
         {
             if (GetComponent<Rigidbody2D>() != null)
             {
-                if (!isInvulnerable)
+                if (!isInvulnerable && other.gameObject.CompareTag("Vine"))
                 {
                     Debug.Log("-20 HP");
                     health -= bDamage.damange;
+                    animator.SetBool("IsHurt",true);
+                }
+
+                if (!isInvulnerable && other.gameObject.CompareTag("Spike"))
+                {
+                    health -= 10;
                     animator.SetBool("IsHurt",true);
                 }
                 Vector2 knockbackDirection = transform.position - other.transform.position;
@@ -65,9 +72,18 @@ public class PlayerHealth : MonoBehaviour
                 GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
                 isInvulnerable = true;
                 invulnerabilityDuration = 0.5f;
-                
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Spike"))
+        {
+            health -= 10;
+            animator.SetBool("IsHurt",true);
+        }
+        isInvulnerable = true;
     }
 
     private void Die()
