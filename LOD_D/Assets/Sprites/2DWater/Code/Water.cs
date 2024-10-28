@@ -208,6 +208,7 @@ namespace Bundos.WaterSystem
             }
 
             springs[index].weightPosition = (sink ? Vector2.down : Vector2.up) * waveHeight;
+            
         }
 
         void OnTriggerEnter2D(Collider2D other)

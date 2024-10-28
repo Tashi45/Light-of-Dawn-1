@@ -1859,11 +1859,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &421408552 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5642232504442527339, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
-  m_PrefabInstance: {fileID: 1468975420}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &434113192 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 945208714293931738, guid: 6664e467a9ba45f4db1878b58a106bfb, type: 3}
@@ -7017,11 +7012,11 @@ PrefabInstance:
     - target: {fileID: 1642255911600551781, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
       propertyPath: 'wayPoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 1959202842}
+      objectReference: {fileID: 0}
     - target: {fileID: 1642255911600551781, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
       propertyPath: 'wayPoints.Array.data[3]'
       value: 
-      objectReference: {fileID: 421408552}
+      objectReference: {fileID: 0}
     - target: {fileID: 2195562075329633582, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.69
@@ -9126,11 +9121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939969125}
   m_CullTransparentMesh: 1
---- !u!4 &1959202842 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4786034852741194457, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
-  m_PrefabInstance: {fileID: 1468975420}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1968280391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5209911914577004028, guid: a22c019c22ad23d4bbf318fb81351f0a, type: 3}
@@ -21055,11 +21045,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 293642a504fac904abf10a9f89fdde96, type: 3}
---- !u!4 &3409210343270220939 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5642232504442527339, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
-  m_PrefabInstance: {fileID: 4722689822513061807}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4570516554565101002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21144,7 +21129,7 @@ PrefabInstance:
     - target: {fileID: 1642255911600551781, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
       propertyPath: 'wayPoints.Array.data[3]'
       value: 
-      objectReference: {fileID: 3409210343270220939}
+      objectReference: {fileID: 0}
     - target: {fileID: 2195562075329633582, guid: 0d522dc1d41fe484a8a0bf849222ed62, type: 3}
       propertyPath: m_LocalPosition.y
       value: 20.86
