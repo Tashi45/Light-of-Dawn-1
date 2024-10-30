@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Key
   - Spike
+  - poison
   layers:
   - Default
   - TransparentFX

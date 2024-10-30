@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 	public PlayerData Data;
 	public Animator animator;
 	public ParticleSystem dust; //Dust effect variable
-	public ParticleSystem landingDust;
+	//public ParticleSystem landingDust;
 	public DashEffect ghost; //Ghost effect variable
 	private float horizontalMove = 0f;
 	
@@ -630,7 +630,7 @@ public class PlayerMovement : MonoBehaviour
 
     void CreateLandingDust()
     {
-	    landingDust.Play();
+	 //   landingDust.Play();
     }
 
     #endregion

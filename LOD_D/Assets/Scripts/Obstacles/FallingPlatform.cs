@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class FallingPlatform : MonoBehaviour
 {
     [SerializeField] private float fallDelay = 1f;
-    private float destroyDelay = 2f;
+    private float destroyDelay = 1f;
     [SerializeField] private float respawnDelay = 5f;
     [SerializeField] private float YPos = 1.5f;
     [SerializeField] private bool respawn;
@@ -28,6 +28,7 @@ public class FallingPlatform : MonoBehaviour
     {
         yield return new WaitForSeconds(fallDelay);
         rb.bodyType = RigidbodyType2D.Dynamic;
+        
         if (respawn == true)
         {
             yield return new WaitForSeconds(respawnDelay);
@@ -38,6 +39,7 @@ public class FallingPlatform : MonoBehaviour
            
         }
         Destroy(gameObject,destroyDelay);
+        
     }
     
     private void Respawn()

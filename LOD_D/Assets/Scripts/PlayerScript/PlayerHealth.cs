@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -17,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar;
     public Animator animator;
     public Rigidbody2D rb;
-    
+    public string lastScene;
     // Start is called before the first frame update
     void Start()
 
@@ -61,11 +62,13 @@ public class PlayerHealth : MonoBehaviour
                     animator.SetBool("IsHurt",true);
                 }
 
-                if (!isInvulnerable && other.gameObject.CompareTag("Spike"))
+                else if (!isInvulnerable && other.gameObject.CompareTag("Spike"))
                 {
                     health -= 10;
                     animator.SetBool("IsHurt",true);
                 }
+                
+                
                 Vector2 knockbackDirection = transform.position - other.transform.position;
                 knockbackDirection.Normalize();
                 knockbackDirection.y += Mathf.Clamp(knockbackDirection.y, 0f, 0f);
@@ -86,11 +89,27 @@ public class PlayerHealth : MonoBehaviour
         isInvulnerable = true;
     }
 
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+    }
+    
+
+
     private void Die()
     {
         rb.isKinematic = true;
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
         animator.SetBool("IsDead",true);
+
+        
+        StartCoroutine(LoadLastSceneAfterDelay());
+        
+        
+    }
+
+    IEnumerator LoadLastSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(lastScene);
     }
 }
