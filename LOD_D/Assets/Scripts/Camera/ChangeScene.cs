@@ -13,9 +13,15 @@ public class ChangeScene : MonoBehaviour
     void Update()
     {
         changeTime -= Time.deltaTime;
-        if (changeTime <=0)
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             SceneManager.LoadScene(sceneName);
         }
+        else if (changeTime <= 0)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        
+
     }
 }

@@ -13,11 +13,20 @@ public class SlidingDoor : MonoBehaviour
     private Vector3 openPosition;
     private bool isOpen = false;
     private float closeTimer = 0f;
+    public bool IsUp;
 
     private void Start()
     {
         closedPosition = transform.position;
-        openPosition = closedPosition + Vector3.left * openDistance;
+        if (IsUp == true)
+        {
+            openPosition = closedPosition + Vector3.up * openDistance;
+        }
+        else
+        {
+            openPosition = closedPosition + Vector3.left * openDistance;
+        }
+        
     }
 
     private void Update()

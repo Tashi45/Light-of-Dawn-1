@@ -94,17 +94,13 @@ public class PlayerHealth : MonoBehaviour
         health -= amount;
     }
     
-
-
     private void Die()
     {
         rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
         animator.SetBool("IsDead",true);
-
         
         StartCoroutine(LoadLastSceneAfterDelay());
-        
-        
     }
 
     IEnumerator LoadLastSceneAfterDelay()

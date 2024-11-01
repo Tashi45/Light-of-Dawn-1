@@ -8,7 +8,7 @@ public class Invisfloor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.CompareTag("Box"))
         {
             other.transform.position = targetWaypoint.position;
             //AudioManager.Instance.PlaySFX("Warp");

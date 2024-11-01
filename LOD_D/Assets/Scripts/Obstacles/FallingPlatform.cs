@@ -14,7 +14,12 @@ public class FallingPlatform : MonoBehaviour
     private bool hasRespawned;
     
     [SerializeField] private Rigidbody2D rb;
-    
+
+    public void Start()
+    {
+        EnableMovingPlatScript();
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -40,6 +45,12 @@ public class FallingPlatform : MonoBehaviour
         }
         Destroy(gameObject,destroyDelay);
         
+    }
+    
+    public void EnableMovingPlatScript()
+    {
+        MovingPlatform movingPlat = GetComponent<MovingPlatform>();
+        movingPlat.enabled = true;
     }
     
     private void Respawn()

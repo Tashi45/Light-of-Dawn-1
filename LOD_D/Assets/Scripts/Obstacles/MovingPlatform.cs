@@ -14,6 +14,8 @@ public class MovingPlatform : MonoBehaviour
     private int pointIndex;
     private int pointCount;
     private int direction = 1;
+    public Rigidbody2D rb;
+    private bool isWaiting = false;
 
     private void Awake()
     {
@@ -29,20 +31,36 @@ public class MovingPlatform : MonoBehaviour
         pointCount = wayPoints.Length;
         pointIndex = 1;
         targetPos = wayPoints[pointIndex].transform.position;
+        
     }
 
     void Update()
     {
-      
+        if (isWaiting)
+            return;
+
         var step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
 
         if (transform.position == targetPos)
         {
-            NextPoint();
+            isWaiting = true;
+            StartCoroutine(DelayAndNextPoint());
         }
-    }
+        
+        if (rb != null && !rb.isKinematic)
+        {
+            // Disable the script
+            this.enabled = false;
+        }
 
+    }
+    private IEnumerator DelayAndNextPoint()
+    {
+        yield return new WaitForSeconds(1f);
+        NextPoint();
+        isWaiting = false;
+    }
     private void NextPoint()
     {
         if (pointIndex == pointCount - 1)
