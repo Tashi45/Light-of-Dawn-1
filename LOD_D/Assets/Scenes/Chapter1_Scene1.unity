@@ -544,11 +544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3061963515456299070, guid: d1b15e3c034116343b861d890178b151, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 3061963515456299070, guid: d1b15e3c034116343b861d890178b151, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 3061963515456299070, guid: d1b15e3c034116343b861d890178b151, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10437,7 +10437,7 @@ Transform:
   m_GameObject: {fileID: 514658762}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 3.0000002, z: -10}
+  m_LocalPosition: {x: -1.17, y: 2.23, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12188,7 +12188,7 @@ Transform:
   m_GameObject: {fileID: 873806174}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 3.0000002, z: -10}
+  m_LocalPosition: {x: -1.17, y: 2.23, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13193,10 +13193,10 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 421019986}
-          m_TargetAssemblyTypeName: UnityEngine.Rigidbody2D, UnityEngine
-          m_MethodName: set_velocityX
-          m_Mode: 4
+        - m_Target: {fileID: 421019985}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13205,10 +13205,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 421019985}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
-          m_Mode: 6
+        - m_Target: {fileID: 421019986}
+          m_TargetAssemblyTypeName: UnityEngine.Rigidbody2D, UnityEngine
+          m_MethodName: set_velocityX
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

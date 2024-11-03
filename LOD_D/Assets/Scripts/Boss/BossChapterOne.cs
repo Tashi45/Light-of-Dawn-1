@@ -2,134 +2,213 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class BossChapterOne : MonoBehaviour
 {
-    public float healt = 100;
-    public int phase = 1;
-    public float spawnDelay = 0.5f;
-    private int currentSpawnIndex = 0;
+    public float bossHealth = 100f;
+    public float bossMaxHealth;
+    public Image bossHealthBar;
+
+    public GameObject warningPrefab;
+    public float warningDuration = 1f;
+    
+    public Transform[] vineSpawnOnGroundPoints;
     public GameObject vinePrefab;
     public GameObject vineUpperPrefab;
-    public GameObject rockPrefab;
-    public Transform[] vineSpawnOnGroundPoints;
-    public Transform[] vineSpawnOnGroundPointsPhase2;
+    public float spawnDelay = 4f;
+    public int minVinesToSpawn = 1;
+    public int maxVinesToSpawn = 3;
+    public float damage = 10f;
+
+    public Transform[] vineSpawnGroundPointPhase2;
+    public float spawnDelayPhase2 = 2f;
+    public int minVinesToSpawnPhase2 = 3;  
+    public int maxVinesToSpawnPhase2 = 5;  
+
+    private float startTime;
+    public float delayTime = 1f;
+    
+    private List<int> usedIndices = new List<int>();
+    public GameObject[] rockPrefabs;
+    public float initialRockDelay = 7f;  // เพิ่มตัวแปรสำหรับ delay ครั้งแรก
+    public float rockSpawnInterval = 10f;  // เพิ่มตัวแปรสำหรับระยะเวลาระหว่างชุด
+    public float rockLifetime = 15f;
+    private bool isFirstRockSpawn = true;  // เพิ่มตัวแปรเช็คว่าเป็นการสร้างครั้งแรกไหม
+    private List<KeyValuePair<GameObject, float>> rocksToRemove = new List<KeyValuePair<GameObject, float>>();
+    
+    private Coroutine rockSpawnCoroutine;
+    
     public Transform[] vineSpawnUpperPoints;
-    public Transform[] vineSpawnUpperPointsPhase2;
     public Transform[] rockSpawnPoints;
-    public Transform[] rockSpawnPointsPhase2;
-    public float attackRate = 0.5f;
+    public float attackRate = 3f;
+    public float dropRate = 10f;
     public bool playerAlive = true;
     private float nextAttackTime;
     private bool isSpawningVines = false;
-    private float spawnRockTime = 2.5f;
     
-    public float damange;
+    private Dictionary<GameObject, float> spawnedRocks = new Dictionary<GameObject, float>();
 
-    IEnumerator SpawnVineCycle()
+    void Start()
     {
-        while (playerAlive)
-        {
-            isSpawningVines = true;
-            currentSpawnIndex = 0;
-
-            yield return StartCoroutine(SpawnVineOnground());
-            yield return StartCoroutine(SpawnVineUpper());
-            yield return StartCoroutine(SpawnRock());
-
-            
-            yield return new WaitForSeconds(attackRate);
-
-            DestroyAllVines();
-            isSpawningVines = false;
-        }
+        startTime = Time.time;
+        bossMaxHealth = bossHealth;
+        UpdateHealthBar();
+        Debug.Log($"Boss Start Health: {bossHealth}"); // เพิ่ม Debug log
     }
     
-    IEnumerator SpawnVineCyclePhase2()
+    public void UpdateHealthBar()
     {
-        while (playerAlive)
+        if (bossHealthBar != null)
         {
-            isSpawningVines = true;
-            currentSpawnIndex = 0;
-
-            yield return StartCoroutine(SpawnVineOngroundPhase2());
-            yield return StartCoroutine(SpawnVineUpperPhase2());
-            yield return StartCoroutine(SpawnRockPhase2());
-            
-            yield return new WaitForSeconds(attackRate);
-
-            DestroyAllVines();
-            isSpawningVines = false;
+            float healthPercentage = Mathf.Clamp01(bossHealth / bossMaxHealth);
+            bossHealthBar.fillAmount = healthPercentage;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        bossHealth -= damage;
+        bossHealth = Mathf.Max(0, bossHealth); // ป้องกันเลือดติดลบ
+        UpdateHealthBar();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (healt <= 0)
+        UpdateHealthBar();
+        
+        if (bossHealth <= 0)
         {
             Destroy(gameObject);
         }
-        
-        if (healt <= 50 && phase == 1)
-        {
-            phase = 2;
-        }
 
-        if (phase == 1)
+        if (Time.time - startTime >= delayTime)
         {
             if (playerAlive && Time.time >= nextAttackTime)
             {
                 if (!isSpawningVines && playerAlive && Time.time >= nextAttackTime)
                 {
                     StartCoroutine(SpawnVineCycle());
+                    StartCoroutine(SpawnRockAndVineCycle());
                 }
             }
+            startTime = Time.time;
+        }
+    }
+    
+    IEnumerator SpawnVineCycle()
+    {
+        while (playerAlive)
+        {
+            isSpawningVines = true;
+
+            // เช็คเลือด boss เพื่อเลือกรูปแบบการโจมตี
+            if (bossHealth <= 50f)
+            {
+                StartCoroutine(SpawnVineOngroundPhase2());
+            }
+            else
+            {
+                StartCoroutine(SpawnVineOnground());
+            }
+
+            yield return new WaitForSeconds(attackRate);
+            isSpawningVines = false;
+        }
+    }
+    
+   
+    IEnumerator SpawnRockAndVineCycle()
+    {
+        if (isFirstRockSpawn)
+        {
+            yield return new WaitForSeconds(initialRockDelay);
+            isFirstRockSpawn = false;
         }
 
-        else if (phase == 2)
+        while (playerAlive)
         {
-            if (playerAlive && Time.time >= nextAttackTime)
-            {
-                if (!isSpawningVines && playerAlive && Time.time >= nextAttackTime)
-                {
-                    StartCoroutine(SpawnVineCyclePhase2());
-                }
-            }
+            StartCoroutine(SpawnRock());
+            StartCoroutine(SpawnVineUpper());
+            yield return new WaitForSeconds(rockSpawnInterval);
         }
     }
     
     IEnumerator SpawnVineOnground()
     {
-        while (currentSpawnIndex < vineSpawnOnGroundPoints.Length)
+        HashSet<int> usedIndices = new HashSet<int>();
+
+        int vinesToSpawn = UnityEngine.Random.Range(minVinesToSpawn, maxVinesToSpawn + 1);
+        for (int i = 0; i < vinesToSpawn; i++)
         {
-            Instantiate(vinePrefab, vineSpawnOnGroundPoints[currentSpawnIndex].position, Quaternion.identity);
-            currentSpawnIndex++;
+            int randomIndex;
+            do
+            {
+                randomIndex = UnityEngine.Random.Range(0, vineSpawnOnGroundPoints.Length);
+            } while (usedIndices.Contains(randomIndex));
+
+            usedIndices.Add(randomIndex);
+
+            // สร้าง warning effect
+            Vector3 warningPosition = vineSpawnOnGroundPoints[randomIndex].position + new Vector3(0f,-0.7f,0f);
+            GameObject warning = Instantiate(warningPrefab, warningPosition, Quaternion.identity);
+
             
+            // รอจนกว่า warning จะหมดเวลา
+            yield return new WaitForSeconds(warningDuration);
+
+            // สร้าง vine
+            GameObject newVine = Instantiate(vinePrefab, vineSpawnOnGroundPoints[randomIndex].position, Quaternion.identity);
+            VineDestructor vineDestructor = newVine.AddComponent<VineDestructor>();
+            vineDestructor.lifetime = 3f;
 
             yield return new WaitForSeconds(spawnDelay);
         }
-        DestroyAllVines();
     }
     
     IEnumerator SpawnVineOngroundPhase2()
     {
-        while (currentSpawnIndex < vineSpawnOnGroundPointsPhase2.Length)
+        HashSet<int> usedIndices = new HashSet<int>();
+
+        int vinesToSpawn = UnityEngine.Random.Range(minVinesToSpawnPhase2, maxVinesToSpawnPhase2 + 1);
+        for (int i = 0; i < vinesToSpawn; i++)
         {
-            Instantiate(vinePrefab, vineSpawnOnGroundPointsPhase2[currentSpawnIndex].position, Quaternion.identity);
-            currentSpawnIndex++;
-            yield return new WaitForSeconds(spawnDelay);
+            int randomIndex;
+            do
+            {
+                randomIndex = UnityEngine.Random.Range(0, vineSpawnGroundPointPhase2.Length);
+            } while (usedIndices.Contains(randomIndex));
+
+            usedIndices.Add(randomIndex);
+
+            // สร้าง warning effect
+            Vector3 warningPosition = vineSpawnGroundPointPhase2[randomIndex].position + new Vector3(0f,-0.7f,0f);
+            GameObject warning = Instantiate(warningPrefab, warningPosition, Quaternion.identity);
+
+        
+            // รอจนกว่า warning จะหมดเวลา
+            yield return new WaitForSeconds(warningDuration);
+            
+            GameObject newVine = Instantiate(vinePrefab, vineSpawnGroundPointPhase2[randomIndex].position, Quaternion.identity);
+            VineDestructor vineDestructor = newVine.AddComponent<VineDestructor>();
+            vineDestructor.lifetime = 5f;
+
+            yield return new WaitForSeconds(spawnDelayPhase2);
         }
-        DestroyAllVines();
     }
 
-    void DestroyAllVines()
+    int GetRandomIndex()
     {
-        GameObject[] vines = GameObject.FindGameObjectsWithTag("Vine");
-        foreach (GameObject vine in vines)
+        int randomIndex;
+        do
         {
-            Destroy(vine);
-        }
+            randomIndex = UnityEngine.Random.Range(0, vineSpawnOnGroundPoints.Length);
+        } while (usedIndices.Contains(randomIndex));
+
+        usedIndices.Add(randomIndex);
+        return randomIndex;
     }
     
     IEnumerator SpawnVineUpper()
@@ -141,46 +220,59 @@ public class BossChapterOne : MonoBehaviour
         
         yield return null;
     }
-    
-    IEnumerator SpawnVineUpperPhase2()
-    {
-        foreach (Transform spawnPoint in vineSpawnUpperPointsPhase2)
-        {
-            Instantiate(vineUpperPrefab, spawnPoint.position, Quaternion.Euler(0,0,180));
-        }
-        
-        yield return null;
-    }
-    
+
     IEnumerator SpawnRock()
     {
+        List<GameObject> currentRocks = new List<GameObject>();
+    
         foreach (Transform spawnPoint in rockSpawnPoints)
         {
-            Instantiate(rockPrefab, spawnPoint.position, Quaternion.identity);
+            if (!playerAlive) break;
+        
+            int randomIndex = UnityEngine.Random.Range(0, rockPrefabs.Length);
+            GameObject rock = Instantiate(rockPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+        
+            if (rock != null)
+            {
+                Rock rockComponent = rock.GetComponent<Rock>();
+                if (rockComponent != null)
+                {
+                    rockComponent.SetInCollector(false); // เซ็ตค่าเริ่มต้น
+                }
+                currentRocks.Add(rock);
+            }
         }
 
-        yield return new WaitForSeconds(spawnRockTime);
+        yield return new WaitForSeconds(rockLifetime);
 
-        GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
-        foreach (GameObject rock in rocks)
+        foreach (GameObject rock in currentRocks)
         {
-            Destroy(rock);
+            if (rock != null)
+            {
+                Rock rockComponent = rock.GetComponent<Rock>();
+                if (rockComponent != null && !rockComponent.IsBeingHeld()) // ทำลายเฉพาะหินที่ไม่ได้ถูกถือ
+                {
+                    Destroy(rock);
+                }
+            }
         }
+        currentRocks.Clear();
     }
-    
-    IEnumerator SpawnRockPhase2()
+
+    void OnDestroy()
     {
-        foreach (Transform spawnPoint in rockSpawnPointsPhase2)
-        {
-            Instantiate(rockPrefab, spawnPoint.position, Quaternion.identity);
-        }
+        StopAllCoroutines();
 
-        yield return new WaitForSeconds(spawnRockTime);
-
-        GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
-        foreach (GameObject rock in rocks)
+        foreach (var rock in GameObject.FindGameObjectsWithTag("Rock"))
         {
-            Destroy(rock);
+            if (rock != null)
+            {
+                Rock rockComponent = rock.GetComponent<Rock>();
+                if (rockComponent != null && !rockComponent.IsBeingHeld()) // ทำลายเฉพาะหินที่ไม่ได้ถูกถือ
+                {
+                    Destroy(rock);
+                }
+            }
         }
     }
 }
