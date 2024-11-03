@@ -8,6 +8,9 @@ TagManager:
   - Vine
   - Rock
   - Ground
+  - Key
+  - Spike
+  - poison
   layers:
   - Default
   - TransparentFX
@@ -45,9 +48,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 3337533213
+  - name: Props
+    uniqueID: 2006480761
     locked: 0
   - name: Text
     uniqueID: 190885727
+    locked: 0
+  - name: Player
+    uniqueID: 3337533213
     locked: 0

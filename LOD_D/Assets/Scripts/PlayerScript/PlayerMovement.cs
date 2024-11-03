@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 	public PlayerData Data;
 	public Animator animator;
 	public ParticleSystem dust; //Dust effect variable
+	//public ParticleSystem landingDust;
+	public DashEffect ghost; //Ghost effect variable
 	private float horizontalMove = 0f;
 	
 
@@ -108,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 		#region INPUT HANDLER
 		_moveInput.x = Input.GetAxisRaw("Horizontal");
 		_moveInput.y = Input.GetAxisRaw("Vertical");
+		
 
 		if (_moveInput.x != 0)
 			CheckDirectionToFace(_moveInput.x > 0);
@@ -355,16 +358,22 @@ public class PlayerMovement : MonoBehaviour
     #region RUN METHODS
     private void Run(float lerpAmount)
 	{
+		
 		//Calculate the direction we want to move in and our desired velocity
 		float targetSpeed = _moveInput.x * Data.runMaxSpeed;
 		//We can reduce are control using Lerp() this smooths changes to are direction and speed
 		targetSpeed = Mathf.Lerp(RB.velocity.x, targetSpeed, lerpAmount);
 		horizontalMove = Input.GetAxisRaw("Horizontal") *targetSpeed;
 		animator.SetFloat("PlayerSpeed",horizontalMove);
+		
+		
+
 		if (horizontalMove >= 6 && !IsJumping && !_isJumpFalling  &&!IsDashing)
 		{
 			CreateDust(); //create dust
+			
 		}
+
 		
 
 
@@ -442,6 +451,8 @@ public class PlayerMovement : MonoBehaviour
 			force -= RB.velocity.y;
 
 		RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+		
+		
 		CreateDust(); //Dust Effect
 		#endregion
 	}
@@ -477,7 +488,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//Overall this method of dashing aims to mimic Celeste, if you're looking for
 		// a more physics-based approach try a method similar to that used in the jump
-
+		ghost.makeGhost = true; // ghost effect
 		LastOnGroundTime = 0;
 		LastPressedDashTime = 0;
 
@@ -512,6 +523,7 @@ public class PlayerMovement : MonoBehaviour
 
 		//Dash over
 		IsDashing = false;
+		ghost.makeGhost = false;
 	}
 
 	//Short period before the player is able to dash again
@@ -557,7 +569,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanJump()
     {
-		return LastOnGroundTime > 0 && !IsJumping;
+	    return LastOnGroundTime > 0 && !IsJumping;
     }
 
 	private bool CanWallJump()
@@ -614,6 +626,11 @@ public class PlayerMovement : MonoBehaviour
     void CreateDust()
     {
 	    dust.Play();
+    }
+
+    void CreateLandingDust()
+    {
+	 //   landingDust.Play();
     }
 
     #endregion

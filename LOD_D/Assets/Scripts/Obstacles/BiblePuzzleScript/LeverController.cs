@@ -23,14 +23,10 @@ public class LeverController : MonoBehaviour
 
     void Update()
     {
-        
-        float distance = Vector2.Distance(transform.position, playerTransform.transform.position);
-        if (Input.GetKey(KeyCode.E)&& distance <= interactionDistance)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Good");
             for (int i = 0; i < leverPositions.Length; i++)
             {
-                Debug.Log("Right");
                 if (Vector3.Distance(playerTransform.position, leverPositions[i].position) <= interactionDistance)
                 {
                     SwitchStage(i);
