@@ -12,12 +12,21 @@ public class FallingPlatform : MonoBehaviour
     [SerializeField] private float YPos = 1.5f;
     [SerializeField] private bool respawn;
     private bool hasRespawned;
+    public bool EnableToMoving;
     
     [SerializeField] private Rigidbody2D rb;
 
     public void Start()
     {
-        EnableMovingPlatScript();
+        if (EnableToMoving == true)
+        {
+            EnableMovingPlatScript();
+        }
+        else
+        {
+            
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D col)

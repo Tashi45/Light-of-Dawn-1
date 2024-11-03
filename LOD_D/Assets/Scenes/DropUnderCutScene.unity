@@ -5257,8 +5257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a5bb5e9fa187148812bf1fd10e4b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 7.5
-  sceneName: 
+  changeTime: 7
+  sceneName: Chapter1_Scene3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

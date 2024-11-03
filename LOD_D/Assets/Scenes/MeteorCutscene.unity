@@ -2583,7 +2583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a5bb5e9fa187148812bf1fd10e4b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 18.2
+  changeTime: 19.2
   sceneName: Chapter1_Scene2
 --- !u!1001 &487128615
 PrefabInstance:
@@ -3065,7 +3065,7 @@ Transform:
   m_GameObject: {fileID: 903240101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.02, y: 3.31, z: -11.431209}
+  m_LocalPosition: {x: -10.51, y: 3.32, z: -11.431209}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3896,7 +3896,7 @@ RectTransform:
   m_GameObject: {fileID: 1936897087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.046395, y: 3.9698, z: 3.9698}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 488057382}
@@ -3948,7 +3948,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -150427110, guid: 6e8c1918b0b71224e9a4c86989ca6e9b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

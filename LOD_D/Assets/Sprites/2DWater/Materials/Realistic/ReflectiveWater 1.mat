@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ReflectiveWaterToxic
+  m_Name: ReflectiveWater 1
   m_Shader: {fileID: -6465566751694194690, guid: 421d57c40012b2747a4690ffa59e43b1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -45,10 +45,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefractionStrength: 1
-    - _Transparency: 0.95
+    - _Transparency: 1.03
     - _WaterSpeed: 0.05
     m_Colors:
-    - _Color: {r: 0.26673195, g: 0.42985165, b: 0.509434, a: 1}
+    - _Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6581607819866062798
 MonoBehaviour:

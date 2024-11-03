@@ -45,7 +45,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefractionStrength: 1
-    - _Transparency: 0.8
+    - _Transparency: 1.03
     - _WaterSpeed: 0.05
     m_Colors:
     - _Color: {r: 0.2971698, g: 1, b: 0.48901883, a: 1}
