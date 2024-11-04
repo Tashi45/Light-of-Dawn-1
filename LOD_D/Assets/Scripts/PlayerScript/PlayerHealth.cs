@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public BossChapterOne bDamage;
     private bool isInvulnerable = false;
     public float invulnerabilityDuration;
-    public float knockbackForce = 5f;
+    public float knockbackForce = 15f;
     public Image healthBar;
     public Animator animator;
     public Rigidbody2D rb;
@@ -115,9 +115,8 @@ public class PlayerHealth : MonoBehaviour
 
         Vector2 knockbackDirection = transform.position - other.transform.position;
         knockbackDirection.Normalize();
-        knockbackDirection.y = Mathf.Clamp(knockbackDirection.y, 0f, 0f);
+        knockbackDirection.y += Mathf.Clamp(knockbackDirection.y, 0f, 0f);
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-
         isInvulnerable = true;
         invulnerabilityDuration = 0.5f;
     }

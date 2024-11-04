@@ -48,6 +48,11 @@ public class DialogueManager : MonoBehaviour
                 DisplayNextDialogueLine();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            EndDialogue();
+        }
     }
 
     private void CompleteCurrentLine()
