@@ -15,11 +15,13 @@ public class TriggerZoneScript : MonoBehaviour
     {
         if (pCol.CompareTag("Player"))
         {
+            AudioManager.Instance.PlayBGM("BossBGM");
             boss.SetActive(true);
             bossHealthBar.SetActive(true);
             rockCountText.SetActive(true);
             rockVauleText.SetActive(true);
             
+            gameObject.SetActive(false);
         }
     }
 }
