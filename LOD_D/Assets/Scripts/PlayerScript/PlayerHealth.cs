@@ -8,18 +8,22 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health;
     public float maxHealth;
-    public BossChapterOne bDamage;
+    //public BossChapterOne bDamage;
     public bool isInvulnerable = false;
     public float invulnerabilityDuration;
     public float knockbackForce = 15f;
     public Image healthBar;
     public Animator animator;
     public Rigidbody2D rb;
-    public string lastScene;
+    //public string lastScene;
+    private Vector2 checkPointPos;
+    bool hasDied = false;
+    
     // Start is called before the first frame update
     void Start()
     {
         maxHealth = health;
+        checkPointPos = transform.position;
     }
     // Update is called once per frame
     void Update()
@@ -35,8 +39,9 @@ public class PlayerHealth : MonoBehaviour
                 
             }
         }
-        if (health <= 0)
+        if (health <= 0 && !hasDied)
         {
+            hasDied = true;
             Die();
         }
     }
@@ -139,12 +144,34 @@ public class PlayerHealth : MonoBehaviour
         rb.velocity = Vector2.zero;
         animator.SetBool("IsDead",true);
         AudioManager.Instance.PlaySFX("Die");
+
+        StartCoroutine(Respawn(2));
         
-        StartCoroutine(LoadLastSceneAfterDelay());
+        //StartCoroutine(LoadLastSceneAfterDelay());
+        //enabled = false;
     }
-    IEnumerator LoadLastSceneAfterDelay()
+
+    IEnumerator Respawn(float duration)
     {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(lastScene);
+        
+        yield return new WaitForSeconds(duration);
+        rb.isKinematic = false;
+        animator.SetBool("IsDead",false);
+        transform.position = checkPointPos;
+        health = 100;
+        hasDied = false;
+        
+        
     }
+
+    public void UpdateCheckpoint(Vector2 pos)
+    {
+        checkPointPos = pos;
+    }
+
+    // IEnumerator LoadLastSceneAfterDelay()
+    // {
+    //     yield return new WaitForSeconds(2f);
+    //     SceneManager.LoadScene(lastScene);
+    // }
 }

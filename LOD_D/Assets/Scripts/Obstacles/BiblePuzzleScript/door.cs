@@ -30,6 +30,7 @@ public class door : MonoBehaviour
         {
             anim.SetTrigger("open");
             locked = false;
+            AudioManager.Instance.PlaySFX("KeyUnlock");
         }
     }
 
