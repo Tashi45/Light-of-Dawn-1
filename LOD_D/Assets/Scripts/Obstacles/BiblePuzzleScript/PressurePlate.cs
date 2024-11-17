@@ -55,6 +55,7 @@ public class PressurePlate : MonoBehaviour
     private void PressPlate()
     {
         isPressed = true;
+        AudioManager.Instance.PlaySFX("Pressure");
         // เลื่อนปุ่มลง
         transform.position = new Vector3(
             transform.position.x,

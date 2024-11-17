@@ -45,6 +45,11 @@ public class AudioManager : MonoBehaviour
             PlayBGM("CaveBGM");
             PlayAmbient("CaveAmbient2");
         }
+        else if (SceneManager.GetActiveScene().name == "Chapter1_Scene4 2")
+        {
+            PlayBGM("BossChapter2BGM");
+            PlayAmbient("CaveAmbient3");
+        }
     }
 
     public void PlayBGM(string name)

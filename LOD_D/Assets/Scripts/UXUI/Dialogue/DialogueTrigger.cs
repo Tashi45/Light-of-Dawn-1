@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
  
@@ -6,7 +7,9 @@ public class DialogueCharacter
 {
     public string name;
     public Sprite icon;
+    
 }
+
  
 [System.Serializable]
 public class DialogueLine
@@ -25,6 +28,7 @@ public class Dialogue
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
+    //private Collider2D coll;
  
     public void TriggerDialogue()
     {
@@ -36,6 +40,13 @@ public class DialogueTrigger : MonoBehaviour
         if(collision.tag == "Player")
         {
             TriggerDialogue();
+            //coll.enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
+    }
+
+    private void Start()
+    {
+        //coll = GetComponent<Collider2D>();
     }
 }

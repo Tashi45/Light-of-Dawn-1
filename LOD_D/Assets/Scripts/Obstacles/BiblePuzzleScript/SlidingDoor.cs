@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
     [Header("Door Settings")]
-    [SerializeField] private float openDistance = 3f;      // ระยะที่ประตูจะเลื่อนขึ้น
-    [SerializeField] private float moveSpeed = 5f;         // ความเร็วในการเลื่อน
-    [SerializeField] private float closeDelay = 0.5f;      // ดีเลย์ก่อนปิด
+    [SerializeField] private float openDistance = 3f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float closeDelay = 0.5f;
 
     private Vector3 closedPosition;
     private Vector3 openPosition;
     private bool isOpen = false;
     private float closeTimer = 0f;
     public bool IsUp;
+    
+    private BoxCollider2D doorCollider;
 
     private void Start()
     {
@@ -27,11 +27,11 @@ public class SlidingDoor : MonoBehaviour
             openPosition = closedPosition + Vector3.left * openDistance;
         }
         
+        doorCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
     {
-        // เลื่อนประตูอย่างนุ่มนวล
         if (isOpen)
         {
             transform.position = Vector3.Lerp(
@@ -39,6 +39,9 @@ public class SlidingDoor : MonoBehaviour
                 openPosition,
                 moveSpeed * Time.deltaTime
             );
+            
+            // ปิด Collider ทันทีที่ประตูเริ่มเปิด
+            doorCollider.enabled = false;
         }
         else
         {
@@ -49,6 +52,9 @@ public class SlidingDoor : MonoBehaviour
                     closedPosition,
                     moveSpeed * Time.deltaTime
                 );
+                
+                // เปิด Collider กลับเมื่อประตูเริ่มปิด
+                doorCollider.enabled = true;
             }
             else
             {

@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar;
     public Animator animator;
     public Rigidbody2D rb;
-    //public string lastScene;
+    public string lastScene;
     private Vector2 checkPointPos;
     bool hasDied = false;
     
@@ -145,9 +145,17 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("IsDead",true);
         AudioManager.Instance.PlaySFX("Die");
 
-        StartCoroutine(Respawn(2));
+        if (SceneManager.GetActiveScene().buildIndex == 7 || SceneManager.GetActiveScene().buildIndex == 8 )
+        {
+            StartCoroutine(LoadLastSceneAfterDelay());
+        }
+        else
+        {
+            StartCoroutine(Respawn(2));
+        }
         
-        //StartCoroutine(LoadLastSceneAfterDelay());
+        
+        
         //enabled = false;
     }
 
@@ -169,9 +177,9 @@ public class PlayerHealth : MonoBehaviour
         checkPointPos = pos;
     }
 
-    // IEnumerator LoadLastSceneAfterDelay()
-    // {
-    //     yield return new WaitForSeconds(2f);
-    //     SceneManager.LoadScene(lastScene);
-    // }
+    IEnumerator LoadLastSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(lastScene);
+    }
 }

@@ -6,6 +6,7 @@ public class Invisfloor : MonoBehaviour
 {
     public Transform targetWaypoint;
     [SerializeField] private bool isPlayer;
+    public float invisdamage = 0;
     
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,7 +19,7 @@ public class Invisfloor : MonoBehaviour
                 PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(10);
+                    playerHealth.TakeDamage(invisdamage);
                 }
             }
 

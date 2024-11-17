@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RockCollector : MonoBehaviour
 {
@@ -7,8 +8,19 @@ public class RockCollector : MonoBehaviour
     public int maxRockCapacity = 4;
     public int targetSum = 21;
     public float damageAmount = 25f;
+    public float healAmount = 25f;  // Amount to heal boss when player makes enough mistakes
+    
+    [Header("Wrong Attempts UI")]
+    public Image wrongAttemptsBar;  // Bar showing progress towards boss heal
+    public int attemptsNeededForHeal = 2;  // Number of wrong attempts needed to heal boss
     
     private List<Rock> collectedRocks = new List<Rock>();
+    private int wrongAttempts = 0;
+
+    void Start()
+    {
+        UpdateWrongAttemptsUI();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,9 +29,9 @@ public class RockCollector : MonoBehaviour
             Rock rock = other.GetComponent<Rock>();
             if (rock != null && rock.IsBeingHeld())
             {
-                rock.SetInCollector(true); // เซ็ตสถานะว่าอยู่ใน collector
+                rock.SetInCollector(true);
                 collectedRocks.Add(rock);
-                Destroy(other.gameObject); // ตอนนี้จะทำลายได้เพราะ isInCollector = true
+                Destroy(other.gameObject);
                 CheckRocks();
             }
         }
@@ -33,9 +45,8 @@ public class RockCollector : MonoBehaviour
             sum += rock.value;
         }
 
-        Debug.Log($"Current sum: {sum}, Rocks count: {collectedRocks.Count}"); // Debug log
+        Debug.Log($"Current sum: {sum}, Rocks count: {collectedRocks.Count}");
 
-        // เช็คทั้งผลรวมและจำนวนหิน
         if (sum == targetSum && collectedRocks.Count == maxRockCapacity)
         {
             if (boss != null)
@@ -45,15 +56,53 @@ public class RockCollector : MonoBehaviour
             }
             ClearRocks();
         }
-        else if (sum > targetSum || collectedRocks.Count > maxRockCapacity)
+        else if (collectedRocks.Count == maxRockCapacity)
         {
-            Debug.Log("Clearing rocks - Sum exceeded or too many rocks");
+            // Wrong combination submitted
+            HandleWrongAttempt();
             ClearRocks();
         }
-        else if (collectedRocks.Count == maxRockCapacity && sum != targetSum)
+        else if (sum > targetSum)
         {
-            Debug.Log("Clearing rocks - Wrong sum with max rocks");
+            // Sum exceeded
+            HandleWrongAttempt();
             ClearRocks();
+        }
+    }
+
+    void HandleWrongAttempt()
+    {
+        wrongAttempts++;
+        UpdateWrongAttemptsUI();
+        
+        if (wrongAttempts >= attemptsNeededForHeal)
+        {
+            // Heal boss
+            if (boss != null)
+            {
+                float newHealth = Mathf.Min(boss.bossHealth + (boss.bossMaxHealth * (healAmount / 100f)), boss.bossMaxHealth);
+                boss.bossHealth = newHealth;
+                boss.UpdateHealthBar();
+                Debug.Log($"Boss healed! New health: {boss.bossHealth}");
+            }
+            
+            // Reset wrong attempts
+            wrongAttempts = 0;
+            UpdateWrongAttemptsUI();
+            
+            // Play heal effect or animation here if needed
+        }
+    }
+
+    void UpdateWrongAttemptsUI()
+    {
+        if (wrongAttemptsBar != null)
+        {
+            float fillAmount = (float)wrongAttempts / attemptsNeededForHeal;
+            wrongAttemptsBar.fillAmount = fillAmount;
+            
+            // Optional: Change color based on progress
+            wrongAttemptsBar.color = Color.Lerp(Color.yellow, Color.red, fillAmount);
         }
     }
 
@@ -72,10 +121,14 @@ public class RockCollector : MonoBehaviour
         return sum;
     }
 
+    public int GetWrongAttempts()
+    {
+        return wrongAttempts;
+    }
+
     void ClearRocks()
     {
         collectedRocks.Clear();
         Debug.Log("Rocks cleared!");
     }
 }
-

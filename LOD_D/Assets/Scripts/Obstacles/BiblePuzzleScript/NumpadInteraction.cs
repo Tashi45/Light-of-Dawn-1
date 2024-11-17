@@ -8,7 +8,8 @@ public class NumpadInteraction : MonoBehaviour
 
     private GameObject player;
     private MonoBehaviour playerMovementScript;
-    private Rigidbody2D playerRigidbody; // เพิ่มการอ้างอิงถึง Rigidbody2D
+    private Rigidbody2D playerRigidbody;
+    private Keypad keypadScript; // เพิ่มตัวแปรอ้างอิงไปยัง Keypad script
 
     void Start()
     {
@@ -24,11 +25,17 @@ public class NumpadInteraction : MonoBehaviour
             Debug.LogError("Object to activate is not assigned.");
         }
 
+        // หา Keypad script
+        keypadScript = GetComponent<Keypad>();
+        if (keypadScript == null)
+        {
+            Debug.LogError("Keypad script not found on the same GameObject.");
+        }
+
         if (player != null)
         {
-            //PlayerMovement playerMovementScript = player.GetComponent<PlayerMovement>();
             playerMovementScript = player.GetComponent("PlayerMovement") as MonoBehaviour;
-            playerRigidbody = player.GetComponent<Rigidbody2D>(); // หา Rigidbody2D
+            playerRigidbody = player.GetComponent<Rigidbody2D>();
             
             if (playerMovementScript == null)
             {
@@ -43,6 +50,12 @@ public class NumpadInteraction : MonoBehaviour
 
     void Update()
     {
+        // ถ้า puzzle ถูกแก้แล้ว (isCorrect == true) จะไม่ทำการโต้ตอบกับ numpad
+        if (keypadScript != null && keypadScript.IsCorrect)
+        {
+            return;
+        }
+
         if (player != null && objectToActivate != null && playerMovementScript != null)
         {
             float distance = Vector2.Distance(transform.position, player.transform.position);
@@ -52,10 +65,9 @@ public class NumpadInteraction : MonoBehaviour
                 objectToActivate.SetActive(!objectToActivate.activeSelf);
                 playerMovementScript.enabled = !objectToActivate.activeSelf;
 
-                // เมื่อปิดการเคลื่อนที่ ให้หยุดการเคลื่อนที่ของ player ทันที
                 if (!playerMovementScript.enabled && playerRigidbody != null)
                 {
-                    playerRigidbody.velocity = Vector2.zero; // รีเซ็ตความเร็ว
+                    playerRigidbody.velocity = Vector2.zero;
                 }
             }
         }

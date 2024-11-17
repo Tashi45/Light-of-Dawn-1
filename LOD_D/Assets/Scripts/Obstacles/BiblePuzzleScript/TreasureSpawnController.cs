@@ -15,9 +15,9 @@ public class TreasureSpawnController : MonoBehaviour
 
     [Header("Effects")]
     public GameObject sparkleEffect;
-    //public AudioClip itemAppearSound;
+    public AudioClip itemAppearSound;
 
-    //private AudioSource audioSource;
+    private AudioSource audioSource;
     private bool hasSpawned = false;
     private Vector3 originalItemPosition; // เก็บตำแหน่งเริ่มต้นของ item
 
@@ -59,11 +59,11 @@ public class TreasureSpawnController : MonoBehaviour
     #endregion
     private void Start()
     {
-        // audioSource = GetComponent<AudioSource>();
-        // if (audioSource == null)
-        // {
-        //     audioSource = gameObject.AddComponent<AudioSource>();
-        // }
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         if (treasureItem != null)
         {
@@ -100,10 +100,10 @@ public class TreasureSpawnController : MonoBehaviour
             Instantiate(sparkleEffect, startPos, Quaternion.identity);
         }
 
-        // if (itemAppearSound != null && audioSource != null)
-        // {
-        //     audioSource.PlayOneShot(itemAppearSound);
-        // }
+        if (itemAppearSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(itemAppearSound);
+        }
 
         float elapsedTime = 0;
         while (elapsedTime < popUpDuration)

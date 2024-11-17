@@ -69,6 +69,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 693bcc066f3455e4fb65cfc3685b20fd, type: 3}
   - name: Hurt
     clip: {fileID: 8300000, guid: 130dfa4c06e995c45b4b99cbd887a128, type: 3}
+  - name: Checkpoint
+    clip: {fileID: 8300000, guid: d7d9b0d43d0e28344a5f435506fc6591, type: 3}
+  - name: KeyUnlock
+    clip: {fileID: 8300000, guid: 0b49c6eec4cdf2141a339dd20597e0a0, type: 3}
+  - name: Pressure
+    clip: {fileID: 8300000, guid: dffececc02a0726459b44281c849295e, type: 3}
+  - name: PressureDoor
+    clip: {fileID: 8300000, guid: 1846286806dc77046a0613d7803a3a40, type: 3}
+  - name: Pickup
+    clip: {fileID: 8300000, guid: c3ef7bfd59a9b85438aa448ba9d507bd, type: 3}
   ambientSounds:
   - name: ForestWind
     clip: {fileID: 8300000, guid: fa8f3cc4df93ce7458cf57e3e087948d, type: 3}

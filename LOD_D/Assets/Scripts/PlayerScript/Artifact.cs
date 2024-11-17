@@ -1,29 +1,45 @@
 using UnityEngine;
 
+[System.Serializable]
+public class BridgeTriggerPair
+{
+    public GameObject bridge;
+    public GameObject triggerPoint;
+    public float triggerRadius = 2f;  // เพิ่มระยะการทริกเกอร์สำหรับแต่ละจุด
+}
+
 public class Artifact : MonoBehaviour
 {
     [SerializeField] GameObject _artifact;
-    [SerializeField] GameObject[] _hiddenBridges; // เก็บสะพานหลายอันในรูปแบบ array
+    [SerializeField] BridgeTriggerPair[] _bridgePairs;
     public bool IsArtifact { get; private set; } = false;
 
     void Start()
     {
-        // ซ่อนสะพานทั้งหมดตั้งแต่เริ่มเกม
-        foreach (GameObject bridge in _hiddenBridges)
+        foreach (BridgeTriggerPair pair in _bridgePairs)
         {
-            if (bridge != null)
+            if (pair.bridge != null)
             {
-                bridge.SetActive(false);
+                pair.bridge.SetActive(false);
             }
         }
     }
 
     void Update()
     {
-        // เช็คว่ากด E และมี artifact แล้วหรือยัง
-        if (Input.GetKeyDown(KeyCode.E) && IsArtifact)
+        if (!IsArtifact) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            ShowAllHiddenBridges();
+            foreach (BridgeTriggerPair pair in _bridgePairs)
+            {
+                float distance = Vector2.Distance(transform.position, pair.triggerPoint.transform.position);
+                if (distance < pair.triggerRadius)
+                {
+                    ShowBridge(pair);
+                    break;
+                }
+            }
         }
     }
 
@@ -37,14 +53,54 @@ public class Artifact : MonoBehaviour
         }
     }
 
-    private void ShowAllHiddenBridges()
+    private void ShowBridge(BridgeTriggerPair pair)
     {
-        foreach (GameObject bridge in _hiddenBridges)
+        if (pair.bridge != null && !pair.bridge.activeSelf)
         {
-            if (bridge != null)
+            pair.bridge.SetActive(true);
+            Debug.Log($"Bridge {pair.bridge.name} appeared!");
+        }
+    }
+
+    // แสดง Gizmos ในหน้า Scene View
+    private void OnDrawGizmos()
+    {
+        DrawTriggerGizmos(false);
+    }
+
+    // แสดง Gizmos แม้ไม่ได้เลือก GameObject
+    private void OnDrawGizmosSelected()
+    {
+        DrawTriggerGizmos(true);
+    }
+
+    private void DrawTriggerGizmos(bool selected)
+    {
+        if (_bridgePairs == null) return;
+
+        foreach (BridgeTriggerPair pair in _bridgePairs)
+        {
+            if (pair.triggerPoint != null)
             {
-                bridge.SetActive(true);
-                Debug.Log($"Bridge {bridge.name} appeared!");
+                // กำหนดสีของ Gizmos
+                if (selected)
+                {
+                    Gizmos.color = new Color(0, 1, 0, 0.5f); // สีเขียวโปร่งใส เมื่อเลือก
+                }
+                else
+                {
+                    Gizmos.color = new Color(1, 1, 0, 0.2f); // สีเหลืองโปร่งใส เมื่อไม่ได้เลือก
+                }
+
+                // วาดวงกลมแสดงระยะ Trigger
+                Gizmos.DrawWireSphere(pair.triggerPoint.transform.position, pair.triggerRadius);
+                
+                // วาดเส้นเชื่อมระหว่างจุด Trigger กับ Bridge
+                if (pair.bridge != null)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(pair.triggerPoint.transform.position, pair.bridge.transform.position);
+                }
             }
         }
     }

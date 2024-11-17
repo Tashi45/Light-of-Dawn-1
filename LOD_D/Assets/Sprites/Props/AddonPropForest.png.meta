@@ -70,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -108,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -392,7 +392,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AddonPropForest_0: -9044299303663768999
+      AddonPropForest_1: -1387320636594961760
+      AddonPropForest_10: -2016114503023170700
+      AddonPropForest_11: -4389466792515250178
+      AddonPropForest_2: 7807220185719142863
+      AddonPropForest_3: 8604750821405762024
+      AddonPropForest_4: 4907163587730269211
+      AddonPropForest_5: -2273167647434334285
+      AddonPropForest_6: -6597478999452092559
+      AddonPropForest_7: 8467981149508592556
+      AddonPropForest_8: 5146913879467225704
+      AddonPropForest_9: 3643289641832535242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
