@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Playables;
 
 public class MushroomPuzzle : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class MushroomPuzzle : MonoBehaviour
     [SerializeField] private GameObject player; // อ้างอิง Player
     [SerializeField] private float interactionRange = 2f; // ระยะการมีปฏิสัมพันธ์
     [SerializeField] private GameObject door;
+    
+    [SerializeField] private PlayableDirector _playableDirector;
     
     private List<int> playerSequence = new List<int>(); // ลำดับที่ผู้เล่นกดเห็ด
     private bool isPuzzleSolved = false;
@@ -52,6 +55,7 @@ public class MushroomPuzzle : MonoBehaviour
     private void HideMushroom(int mushroomIndex)
     {
         mushrooms[mushroomIndex].SetActive(false); // ซ่อนเห็ด
+        AudioManager.Instance.PlaySFX("Pickup");
     }
 
     private void CheckSequence()
@@ -79,8 +83,6 @@ public class MushroomPuzzle : MonoBehaviour
         }
     }
 
-
-
     private void ResetPuzzle()
     {
         // แสดงเห็ดกลับมา
@@ -104,6 +106,7 @@ public class MushroomPuzzle : MonoBehaviour
     {
         if (door != null)
         {
+            _playableDirector.Play();
             door.SetActive(false); // ทำให้ประตูหายไปหรือเปิดออก
             Debug.Log("Door Opened!");
         }

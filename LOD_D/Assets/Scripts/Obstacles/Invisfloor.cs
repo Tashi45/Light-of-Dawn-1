@@ -6,6 +6,8 @@ public class Invisfloor : MonoBehaviour
 {
     public Transform targetWaypoint;
     [SerializeField] private bool isPlayer;
+    public float invisdamage = 0;
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,6 +16,11 @@ public class Invisfloor : MonoBehaviour
             if (other.gameObject.CompareTag("Player"))
             {
                 other.transform.position = targetWaypoint.position;
+                PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(invisdamage);
+                }
             }
 
         }
@@ -23,6 +30,7 @@ public class Invisfloor : MonoBehaviour
             other.transform.position = targetWaypoint.position;
             //AudioManager.Instance.PlaySFX("Warp");
         }
+        
         
     }
 }

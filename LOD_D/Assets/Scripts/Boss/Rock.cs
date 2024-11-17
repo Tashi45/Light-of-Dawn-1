@@ -4,11 +4,12 @@ public class Rock : MonoBehaviour
 {
     public int value;
     private bool isBeingHeld = false;
-    private bool isInCollector = false; // เพิ่มตัวแปรเช็คว่าอยู่ใน collector หรือไม่
+    private bool isInCollector = false;
 
     public void SetHeld(bool held)
     {
         isBeingHeld = held;
+        Debug.Log($"Rock is being held: {held}");
     }
 
     public bool IsBeingHeld()
@@ -16,23 +17,44 @@ public class Rock : MonoBehaviour
         return isBeingHeld;
     }
 
-    // เพิ่มฟังก์ชันสำหรับเช็คว่าอยู่ใน collector
     public void SetInCollector(bool inCollector)
     {
         isInCollector = inCollector;
+        Debug.Log($"Rock is in collector: {inCollector}");
     }
 
     public bool IsInCollector()
     {
         return isInCollector;
     }
+    
+    // เปลี่ยนเป็น OnCollision2D
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // เพิ่ม Debug ให้ละเอียดขึ้น
+        Debug.Log($"OnCollisionEnter2D - Colliding with: {collision.gameObject.name}");
+        Debug.Log($"IsBeingHeld: {isBeingHeld}");
+        Debug.Log($"Collision object tag: {collision.gameObject.tag}");
 
-    // ป้องกันการถูกทำลายถ้าไม่ได้อยู่ใน collector
+        // ตรวจสอบว่า AudioManager exists
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("No AudioManager found in scene!");
+            return;
+        }
+
+        // ตรวจสอบการชนกับพื้น
+        if (!isBeingHeld && collision.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("Attempting to play RockDropping sound");
+            AudioManager.Instance.PlaySFX("RockDropping");
+        }
+    }
+
     private void OnDestroy()
     {
         if (!isInCollector && isBeingHeld)
         {
-            // ยกเลิกการทำลาย
             GameObject.DontDestroyOnLoad(gameObject);
         }
     }

@@ -13,26 +13,22 @@ public class Keypad : MonoBehaviour
     private bool isCorrect = false;
     private bool isCooldown = false;
     
-    // เพิ่มตัวแปรสำหรับอ้างอิง NumpadInteraction
     private NumpadInteraction numpadInteraction;
     private GameObject player;
     private MonoBehaviour playerMovementScript;
     
     void Start()
     {
-        // เปลี่ยนจาก GetComponentInParent เป็น GetComponent
         numpadInteraction = GetComponent<NumpadInteraction>();
-        // if (numpadInteraction == null)
-        // {
-        //     Debug.LogError("NumpadInteraction script not found on the same GameObject!");
-        // }
+        if (numpadInteraction == null)
+        {
+            Debug.LogError("NumpadInteraction script not found on the same GameObject!");
+        }
 
-        // หา player และ movement script
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            //PlayerMovement playerMovementScript = player.GetComponent<PlayerMovement>();
-            playerMovementScript = player.GetComponent("PlayerMovement")as MonoBehaviour;
+            playerMovementScript = player.GetComponent("PlayerMovement") as MonoBehaviour;
             if (playerMovementScript == null)
             {
                 Debug.LogError("PlayerMovement script not found on player!");
@@ -68,13 +64,11 @@ public class Keypad : MonoBehaviour
                 }
             }
 
-            // ตรวจจับปุ่ม Enter สำหรับยืนยัน
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 Execute();
             }
 
-            // ตรวจจับปุ่ม Backspace เพื่อลบทีละตัว และ Delete เพื่อลบทั้งหมด
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 RemoveLastDigit();
@@ -93,6 +87,11 @@ public class Keypad : MonoBehaviour
         {
             Ans.text += number.ToString();
         }
+    }
+    
+    public bool IsCorrect
+    {
+        get { return isCorrect; }
     }
 
     public void Execute()
@@ -114,13 +113,17 @@ public class Keypad : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         
-        // เปิดการเคลื่อนที่ของผู้เล่นก่อนที่จะปิด keypad UI
         if (playerMovementScript != null)
         {
             playerMovementScript.enabled = true;
         }
 
-        // หากมี parent object ที่ควบคุม UI ทั้งหมด ให้ปิด parent แทน
+        // ปิดการใช้งาน NumpadInteraction
+        if (numpadInteraction != null)
+        {
+            numpadInteraction.enabled = false;
+        }
+
         Transform parentUI = transform.parent;
         if (parentUI != null)
         {

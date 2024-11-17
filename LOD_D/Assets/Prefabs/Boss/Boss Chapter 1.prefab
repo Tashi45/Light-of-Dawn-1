@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1888027851876584067, guid: ed55b352e3a328246ab8fa6e5b3010f9, type: 3}
+  m_Sprite: {fileID: -4157855673317060903, guid: 637063287fc259c4dade8132e8d15b4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6388268298065973398}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -152,7 +152,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.94, y: 9.14}
+    oldSize: {x: 0.5361328, y: 0.49266815}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -172,32 +172,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270ac6ca438edf643b4785efe2b50448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healt: 56
-  phase: 1
-  spawnDelay: 0.5
-  vinePrefab: {fileID: 5464592426807401843, guid: ed59fc45700a7ca4ebdaa1cf2f82c0b1, type: 3}
-  vineUpperPrefab: {fileID: 4380329543762823801, guid: 505e2ec4d826ad345bac7b2c8d95d0d5, type: 3}
-  rockPrefab: {fileID: 3876988978436249353, guid: b105f0664f57d734d8d14f79b53b28fb, type: 3}
+  animator: {fileID: 0}
+  bossDie: {fileID: 0}
+  bossHealth: 100
+  bossMaxHealth: 0
+  bossHealthBar: {fileID: 0}
+  warningPrefab: {fileID: 0}
+  warningDuration: 1
   vineSpawnOnGroundPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  vineSpawnOnGroundPointsPhase2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  vinePrefab: {fileID: 5464592426807401843, guid: ed59fc45700a7ca4ebdaa1cf2f82c0b1, type: 3}
+  vineUpperPrefab: {fileID: 4380329543762823801, guid: 505e2ec4d826ad345bac7b2c8d95d0d5, type: 3}
+  spawnDelay: 0.5
+  minVinesToSpawn: 1
+  maxVinesToSpawn: 3
+  damage: 10
+  vineSpawnGroundPointPhase2: []
+  spawnDelayPhase2: 2
+  minVinesToSpawnPhase2: 3
+  maxVinesToSpawnPhase2: 5
+  delayTime: 1
+  rockPrefabs: []
+  initialRockDelay: 7
+  rockSpawnInterval: 10
+  rockLifetime: 15
   vineSpawnUpperPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  vineSpawnUpperPointsPhase2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -207,14 +208,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  rockSpawnPointsPhase2:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   attackRate: 3
+  dropRate: 10
   playerAlive: 1
-  damange: 20

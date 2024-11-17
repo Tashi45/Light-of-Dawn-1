@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Bundos.WaterSystem
 {
@@ -42,8 +43,7 @@ namespace Bundos.WaterSystem
         [HideInInspector]
         Vector2[] uvs;
 
-       // public AudioSource water;
-
+        
 
         private void Start()
         {
@@ -224,7 +224,12 @@ namespace Bundos.WaterSystem
                 Ripple(contactPoint, false);
             }
 
-           // water.PlayOneShot(water.clip);
+           //water.PlayOneShot(water.clip);
+           if (other.CompareTag("Player") || other.CompareTag("Box"))
+           {
+               AudioManager.Instance.PlaySFX("WaterIn");
+           }
+           
         }
 
         void OnTriggerExit2D(Collider2D other)
@@ -239,7 +244,7 @@ namespace Bundos.WaterSystem
                 Ripple(contactPoint, true);
             }
 
-            //water.PlayOneShot(water.clip);
+           // water.PlayOneShot(water.clip);
         }
     }
 }
