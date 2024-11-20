@@ -17,6 +17,7 @@ public class BoxAnimationController : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger(openTriggerName);
+            AudioManager.Instance.PlaySFX("Chest");
         }
     }
 

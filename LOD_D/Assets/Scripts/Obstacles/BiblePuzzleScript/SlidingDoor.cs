@@ -39,7 +39,6 @@ public class SlidingDoor : MonoBehaviour
                 openPosition,
                 moveSpeed * Time.deltaTime
             );
-            
             // ปิด Collider ทันทีที่ประตูเริ่มเปิด
             doorCollider.enabled = false;
         }
@@ -66,6 +65,7 @@ public class SlidingDoor : MonoBehaviour
     public void OpenDoor()
     {
         isOpen = true;
+        AudioManager.Instance.PlaySFX("PressureDoor");
     }
 
     public void CloseDoor()

@@ -9,7 +9,7 @@ public class Keypad : MonoBehaviour
     [SerializeField] private Text Ans;
     public GameObject Door;
 
-    private string Answer = "123456";
+    private string Answer = "2360";
     private bool isCorrect = false;
     private bool isCooldown = false;
     
@@ -82,7 +82,7 @@ public class Keypad : MonoBehaviour
     
     public void Number(int number)
     {
-        if (Ans.text.Length >= 6 && Ans.text != "CORRECT" && Ans.text != "INCORRECT") return;
+        if (Ans.text.Length >= 4 && Ans.text != "CORRECT" && Ans.text != "INCORRECT") return;
         if (!isCorrect && !isCooldown)
         {
             Ans.text += number.ToString();

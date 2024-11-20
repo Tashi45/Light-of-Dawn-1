@@ -27,10 +27,6 @@ public class NumpadInteraction : MonoBehaviour
 
         // หา Keypad script
         keypadScript = GetComponent<Keypad>();
-        if (keypadScript == null)
-        {
-            Debug.LogError("Keypad script not found on the same GameObject.");
-        }
 
         if (player != null)
         {

@@ -412,5 +412,7 @@ public class BossChapterOne : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         bossDie.SetActive(true);
+        SceneManager.LoadScene("BossChangeCutscene");
+
     }
 }

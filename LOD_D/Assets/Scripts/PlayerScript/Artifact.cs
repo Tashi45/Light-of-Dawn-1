@@ -49,6 +49,7 @@ public class Artifact : MonoBehaviour
         {
             IsArtifact = true;
             Debug.Log("Collected artifact!");
+            AudioManager.Instance.PlaySFX("Artifact");
             Destroy(other.gameObject);
         }
     }
@@ -58,6 +59,7 @@ public class Artifact : MonoBehaviour
         if (pair.bridge != null && !pair.bridge.activeSelf)
         {
             pair.bridge.SetActive(true);
+            AudioManager.Instance.PlaySFX("Time");
             Debug.Log($"Bridge {pair.bridge.name} appeared!");
         }
     }

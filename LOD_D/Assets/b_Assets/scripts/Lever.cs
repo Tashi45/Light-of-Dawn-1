@@ -59,7 +59,7 @@ public class Lever : MonoBehaviour
             CycleLeverStage();
             if (puzzleManager != null)
             {
-                puzzleManager.PlayLeverSound();
+                AudioManager.Instance.PlaySFX("Lever");
             }
         }
     }

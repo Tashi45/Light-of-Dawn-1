@@ -114,7 +114,7 @@ public class BossChase : MonoBehaviour
         if (laserPrefab != null && laserSpawnPoint != null)
         {
             Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("LaserShot");
+            AudioManager.Instance.PlaySFX("Outgoing");
         }
     }
 

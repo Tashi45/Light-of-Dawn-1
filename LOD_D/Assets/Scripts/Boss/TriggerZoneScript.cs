@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
 
 public class TriggerZoneScript : MonoBehaviour 
 {
@@ -12,6 +9,26 @@ public class TriggerZoneScript : MonoBehaviour
     public GameObject rockVauleText;
     public GameObject attempText;
     
+    private void Start()
+    {
+        // Pre-load assets
+        PreloadAssets();
+    }
+
+    private void PreloadAssets()
+    {
+        // Pre-instantiate but keep inactive
+        boss.SetActive(false);
+        bossHealthBar.SetActive(false);
+        rockCountText.SetActive(false);
+        rockVauleText.SetActive(false);
+        attempText.SetActive(false);
+
+        // Preload audio with correct type parameters
+        AudioManager.Instance.PreloadAudio("LargeBoss", AudioManager.AudioType.SFX);
+        AudioManager.Instance.PreloadAudio("BossBGM", AudioManager.AudioType.BGM);
+    }
+
     private void OnTriggerEnter2D(Collider2D pCol)
     {
         if (pCol.CompareTag("Player"))
@@ -23,21 +40,16 @@ public class TriggerZoneScript : MonoBehaviour
 
     private IEnumerator ActivateBossSequence()
     {
-        // เล่นเสียง SFX ก่อน
+        // ลดการ delay ลงเนื่องจาก preload แล้ว
         AudioManager.Instance.PlaySFX("LargeBoss");
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
 
-        // ค่อยๆ activate UI elements
         rockCountText.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
         rockVauleText.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
         attempText.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
         bossHealthBar.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-
-        // สุดท้ายค่อย activate boss และเล่น BGM
+        
+        yield return new WaitForSeconds(0.05f);
         boss.SetActive(true);
         AudioManager.Instance.PlayBGM("BossBGM");
     }
