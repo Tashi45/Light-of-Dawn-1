@@ -145,7 +145,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("IsDead",true);
         AudioManager.Instance.PlaySFX("Die");
 
-        if (SceneManager.GetActiveScene().buildIndex == 7 || SceneManager.GetActiveScene().buildIndex == 8 )
+        if (SceneManager.GetActiveScene().name == "Chapter1_Scene4" || SceneManager.GetActiveScene().name == "Chapter1_Scene4 2")
         {
             StartCoroutine(LoadLastSceneAfterDelay());
         }
