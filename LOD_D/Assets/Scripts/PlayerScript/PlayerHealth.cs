@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
+using Unity.Services.Core;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
@@ -17,13 +20,14 @@ public class PlayerHealth : MonoBehaviour
     public Rigidbody2D rb;
     public string lastScene;
     private Vector2 checkPointPos;
-    bool hasDied = false;
+    public bool hasDied = false;
     
     // Start is called before the first frame update
     void Start()
     {
         maxHealth = health;
         checkPointPos = transform.position;
+        //Initialized();
     }
     // Update is called once per frame
     void Update()
@@ -44,6 +48,8 @@ public class PlayerHealth : MonoBehaviour
             hasDied = true;
             Die();
         }
+
+        
     }
     // private void OnCollisionEnter2D(Collision2D other)
     // {
@@ -138,12 +144,16 @@ public class PlayerHealth : MonoBehaviour
         health -= amount;
     }
     
+    
+    
     private void Die()
     {
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
         animator.SetBool("IsDead",true);
         AudioManager.Instance.PlaySFX("Die");
+        
+        //PlayerDied();
 
         if (SceneManager.GetActiveScene().name == "Chapter1_Scene4" || SceneManager.GetActiveScene().name == "Chapter1_Scene4 2")
         {
@@ -155,10 +165,10 @@ public class PlayerHealth : MonoBehaviour
         }
         
         
-        
         //enabled = false;
     }
 
+    
     IEnumerator Respawn(float duration)
     {
         
@@ -182,4 +192,39 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(lastScene);
     }
+    
+    // private async void Initialized()
+    // {
+    //     await UnityServices.InitializeAsync();
+    //     AnalyticsService.Instance.StartDataCollection();
+    // }
+
+    
+
+    //private int playerDeathCount;
+    // private void PlayerDied(int playerDeathCount)
+    // {
+    //    //playerDeathCount++;
+    //     CustomEvent customEventInput = new CustomEvent("PlayerDeath")
+    //     {
+    //         {"DeathCount", playerDeathCount}
+    //     };
+    //
+    //     AnalyticsService.Instance.RecordEvent(customEventInput);
+    //     Debug.Log($"Player died. Total deaths: {playerDeathCount}");
+    // }
+    // private int Playerdeath_Count = 0;
+    //
+    // private void PlayerDied()
+    // {
+    //     Playerdeath_Count++;
+    //
+    //     // Send the death count to Unity Analytics
+    //     Analytics.SendEvent("PlayerDeath", new Dictionary<string, object> {
+    //         { "DeathCount", Playerdeath_Count }
+    //     });
+    //
+    //     Debug.Log($"Player died. Total deaths: {Playerdeath_Count}");
+    // }
+
 }

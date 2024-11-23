@@ -7446,6 +7446,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 728668258}
     - target: {fileID: 3894584742996565587, guid: 14c240c1472f1a34c83ae8faac92fab6, type: 3}
+      propertyPath: analytic
+      value: 
+      objectReference: {fileID: 5271966640110519879}
+    - target: {fileID: 3894584742996565587, guid: 14c240c1472f1a34c83ae8faac92fab6, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 780913319}
@@ -15928,8 +15932,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8340853659757485209, guid: 75fd8c30a142b424f836da4e375348ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5271966640110519879}
   m_SourcePrefab: {fileID: 100100000, guid: 75fd8c30a142b424f836da4e375348ae, type: 3}
+--- !u!1 &5271966640110519877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8340853659757485209, guid: 75fd8c30a142b424f836da4e375348ae, type: 3}
+  m_PrefabInstance: {fileID: 5271966640110519876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5271966640110519878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 278130380478651218, guid: 75fd8c30a142b424f836da4e375348ae, type: 3}
+  m_PrefabInstance: {fileID: 5271966640110519876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271966640110519877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd21889ff3e1dd48bde26663b699db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5271966640110519879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271966640110519877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910a3a0c92419b74f8237012d4aab34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: {fileID: 5271966640110519878}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4990,6 +4990,7 @@ GameObject:
   - component: {fileID: 8260675494046169730}
   - component: {fileID: 5534739048219122736}
   - component: {fileID: 5012561397440699357}
+  - component: {fileID: 7244623945360563057}
   m_Layer: 8
   m_Name: 'Player '
   m_TagString: Player
@@ -5206,7 +5207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  bDamage: {fileID: 0}
   isInvulnerable: 0
   invulnerabilityDuration: 1
   knockbackForce: 15
@@ -5214,6 +5214,21 @@ MonoBehaviour:
   animator: {fileID: 1812600253243974533}
   rb: {fileID: 7052200005986538975}
   lastScene: Chapter1_Scene1
+  hasDied: 0
+--- !u!114 &7244623945360563057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087327887986977377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910a3a0c92419b74f8237012d4aab34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: {fileID: 5012561397440699357}
+  Keypad: {fileID: 0}
 --- !u!1 &5427645856690981305
 GameObject:
   m_ObjectHideFlags: 0

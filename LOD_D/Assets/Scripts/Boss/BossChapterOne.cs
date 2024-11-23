@@ -11,6 +11,7 @@ public class BossChapterOne : MonoBehaviour
     private GameObject player;
     private Transform playerTransform;
     public Animator animator;
+    public Analytic analytic;
     private bool isInPhase2 = false;  // เพิ่มตัวแปรเช็คว่าอยู่ใน Phase 2 หรือไม่
 
     [Header("Boss Health Settings")]
@@ -402,6 +403,7 @@ public class BossChapterOne : MonoBehaviour
         activeTrackingRocks.Clear();
     }
 
+    
     IEnumerator DestroyAfterAnimation()
     {
         if (trackingRockCoroutine != null)
@@ -410,6 +412,7 @@ public class BossChapterOne : MonoBehaviour
             trackingRockCoroutine = null;
         }
         yield return new WaitForSeconds(1f);
+        analytic.BossDead(1);
         Destroy(gameObject);
         bossDie.SetActive(true);
         SceneManager.LoadScene("BossChangeCutscene");
