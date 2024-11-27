@@ -37,7 +37,7 @@ public class GrabController : MonoBehaviour
 
         RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale, rayDist);
 
-        if (Input.GetKeyDown(KeyCode.P) && grabCheck.collider != null)
+        if (Input.GetKeyDown(KeyCode.P)||Input.GetKeyDown(KeyCode.R) && grabCheck.collider != null)
         {
             if (grabCheck.collider.gameObject.CompareTag("Rock"))
             {
@@ -63,7 +63,7 @@ public class GrabController : MonoBehaviour
                     RigidbodyConstraints2D.FreezeRotation;
             }
         }
-        else if (Input.GetKeyUp(KeyCode.P) && grabbedObject != null)
+        else if (Input.GetKeyUp(KeyCode.P)||Input.GetKeyDown(KeyCode.R) && grabbedObject != null)
         {
             // เพิ่มการเรียกใช้ SetHeld
             Rock rock = grabbedObject.GetComponent<Rock>();

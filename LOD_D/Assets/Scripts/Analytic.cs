@@ -7,7 +7,7 @@ using UnityEngine.Analytics;
 
 public class Analytic : MonoBehaviour
 {
-    public PlayerHealth _playerHealth;
+    //public PlayerHealth _playerHealth;
     //public Keypad Keypad;
    // public BossChapterOne boss;
     void Start()
@@ -17,15 +17,15 @@ public class Analytic : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.G))
-        // {
-        //     PlayerDie(1);
-        // }
-
-        if (_playerHealth.health <= 0 && _playerHealth.hasDied != true)
+        if (Input.GetKeyDown(KeyCode.G))
         {
             PlayerDie(1);
         }
+
+        // if (_playerHealth.health <= 0 && _playerHealth.hasDied != true)
+        // {
+        //     PlayerDie(1);
+        // }
         
 
         // if (Keypad.Ans.text != Keypad.Answer && Keypad.IsCorrect != true)
@@ -40,7 +40,7 @@ public class Analytic : MonoBehaviour
         AnalyticsService.Instance.StartDataCollection();
     }
     
-    private void PlayerDie(int Playerdead_Count)
+    public void PlayerDie(int Playerdead_Count)
     {
         CustomEvent customEventInput = new CustomEvent("PlayerDeath")
         {

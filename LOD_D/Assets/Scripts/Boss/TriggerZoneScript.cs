@@ -8,23 +8,21 @@ public class TriggerZoneScript : MonoBehaviour
     public GameObject rockCountText;
     public GameObject rockVauleText;
     public GameObject attempText;
+    public BossTutorialManager tutorialManager;  // เพิ่มการอ้างอิงไปยัง tutorial manager
     
     private void Start()
     {
-        // Pre-load assets
         PreloadAssets();
     }
 
     private void PreloadAssets()
     {
-        // Pre-instantiate but keep inactive
         boss.SetActive(false);
         bossHealthBar.SetActive(false);
         rockCountText.SetActive(false);
         rockVauleText.SetActive(false);
         attempText.SetActive(false);
 
-        // Preload audio with correct type parameters
         AudioManager.Instance.PreloadAudio("LargeBoss", AudioManager.AudioType.SFX);
         AudioManager.Instance.PreloadAudio("BossBGM", AudioManager.AudioType.BGM);
     }
@@ -40,7 +38,6 @@ public class TriggerZoneScript : MonoBehaviour
 
     private IEnumerator ActivateBossSequence()
     {
-        // ลดการ delay ลงเนื่องจาก preload แล้ว
         AudioManager.Instance.PlaySFX("LargeBoss");
         yield return new WaitForSeconds(0.05f);
 
@@ -51,6 +48,13 @@ public class TriggerZoneScript : MonoBehaviour
         
         yield return new WaitForSeconds(0.05f);
         boss.SetActive(true);
+        
+        // แสดง tutorial ก่อนเริ่มเพลง boss
+        if (tutorialManager != null)
+        {
+            tutorialManager.ShowTutorial();
+        }
+
         AudioManager.Instance.PlayBGM("BossBGM");
     }
 }

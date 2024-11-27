@@ -105,8 +105,8 @@ public class Keypad : MonoBehaviour
         {
             Ans.text = "CORRECT";
            
-            Door.SetActive(false);
             isCorrect = true;
+            Door.SetActive(false);
             StartCoroutine(DisableKeypad());
         }
         else

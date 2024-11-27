@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 	public PlayerData Data;
 	public Animator animator;
 	public ParticleSystem dust; //Dust effect variable
+	public bool canMove = true;
 	//public ParticleSystem landingDust;
 	public DashEffect ghost; //Ghost effect variable
 	private float horizontalMove = 0f;
@@ -97,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
+		if (!canMove) return;
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
 		LastOnWallTime -= Time.deltaTime;
@@ -301,6 +303,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
 	{
+		if (!canMove) return;
 		//Handle Run
 		if (!IsDashing)
 		{

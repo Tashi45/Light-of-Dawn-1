@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Slider ambientSlider;
 
     void Start()
     {
@@ -59,6 +60,11 @@ public class PauseMenu : MonoBehaviour
         audiomixer.SetFloat("SFXVolume", volume);
     }
 
+    public void UpdateAmbientVolume(float volume)
+    {
+        audiomixer.SetFloat("AmbientVolume", volume);
+    }
+    
     public void SaveVolume()
     {
         audiomixer.GetFloat("MusicVolume", out float musicVolume);
@@ -66,6 +72,9 @@ public class PauseMenu : MonoBehaviour
         
         audiomixer.GetFloat("SFXVolume", out float sfxVolume);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        
+        audiomixer.GetFloat("AmbientVolume", out float ambientVolume);
+        PlayerPrefs.SetFloat("AmbientVolume", ambientVolume);
     }
 
     public void LoadVolume()
@@ -73,14 +82,17 @@ public class PauseMenu : MonoBehaviour
         // Load saved volumes or use default if not set
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0f);
         float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0f);
+        float ambientVolume = PlayerPrefs.GetFloat("AmbientVolume", 0f);
 
         // Set sliders
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
+        ambientSlider.value = ambientVolume;
 
         // Apply volumes to mixer
         audiomixer.SetFloat("MusicVolume", musicVolume);
         audiomixer.SetFloat("SFXVolume", sfxVolume);
+        audiomixer.SetFloat("AmbientVolume", ambientVolume);
     }
     
     public void QuitGame()

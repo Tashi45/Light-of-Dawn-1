@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Slider ambientSlider;
 
     private void Start()
     {
@@ -37,6 +38,11 @@ public class MainMenu : MonoBehaviour
     {
         audiomixer.SetFloat("SFXVolume", volume);
     }
+    
+    public void UpdateAmbientVolume(float volume)
+        {
+            audiomixer.SetFloat("AmbientVolume", volume);
+        }
 
     public void SaveVolume()
     {
@@ -45,11 +51,15 @@ public class MainMenu : MonoBehaviour
         
         audiomixer.GetFloat("SFXVolume", out float sfxVolume);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        
+        audiomixer.GetFloat("AmbientVolume", out float ambientVolume);
+        PlayerPrefs.SetFloat("AmbientVolume", ambientVolume);
     }
 
     public void LoadVolume()
     {
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+        ambientSlider.value = PlayerPrefs.GetFloat("AmbientVolume");
     }
 }

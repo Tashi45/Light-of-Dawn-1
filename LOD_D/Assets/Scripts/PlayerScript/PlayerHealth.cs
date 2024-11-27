@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     public string lastScene;
     private Vector2 checkPointPos;
     public bool hasDied = false;
+    public Analytic _analytic;
     
     // Start is called before the first frame update
     void Start()
@@ -151,6 +152,7 @@ public class PlayerHealth : MonoBehaviour
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
         animator.SetBool("IsDead",true);
+        _analytic.PlayerDie(1);
         AudioManager.Instance.PlaySFX("Die");
         
         //PlayerDied();
