@@ -9,7 +9,7 @@ public class NumpadInteraction : MonoBehaviour
     private GameObject player;
     private MonoBehaviour playerMovementScript;
     private Rigidbody2D playerRigidbody;
-    private Keypad keypadScript; // เพิ่มตัวแปรอ้างอิงไปยัง Keypad script
+    public Keypad keypadScript; // เพิ่มตัวแปรอ้างอิงไปยัง Keypad script
 
     void Start()
     {
@@ -27,10 +27,6 @@ public class NumpadInteraction : MonoBehaviour
 
         // หา Keypad script
         keypadScript = GetComponent<Keypad>();
-        if (keypadScript == null)
-        {
-            Debug.LogError("Keypad script not found on the same GameObject.");
-        }
 
         if (player != null)
         {
@@ -55,8 +51,7 @@ public class NumpadInteraction : MonoBehaviour
         {
             return;
         }
-
-        if (player != null && objectToActivate != null && playerMovementScript != null)
+        else if (player != null && objectToActivate != null && playerMovementScript != null)
         {
             float distance = Vector2.Distance(transform.position, player.transform.position);
 
@@ -71,6 +66,7 @@ public class NumpadInteraction : MonoBehaviour
                 }
             }
         }
+        
     }
 
     void OnDrawGizmosSelected()

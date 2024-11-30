@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2324191684185964004}
   - component: {fileID: 2904203408626686373}
   - component: {fileID: 5135472937933333884}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: RockProjectile
   m_TagString: TrackingRock
   m_Icon: {fileID: 0}

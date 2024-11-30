@@ -1,24 +1,29 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Services.Analytics;
+using Unity.Services.Core;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class Keypad : MonoBehaviour
 {
     public Animator animator;
-    [SerializeField] private Text Ans;
+    [SerializeField] public Text Ans;
     public GameObject Door;
 
-    private string Answer = "123456";
+    public string Answer = "2360";
     private bool isCorrect = false;
     private bool isCooldown = false;
-    
+
     private NumpadInteraction numpadInteraction;
     private GameObject player;
     private MonoBehaviour playerMovementScript;
     
     void Start()
     {
+        //Initialized();
         numpadInteraction = GetComponent<NumpadInteraction>();
         if (numpadInteraction == null)
         {
@@ -82,7 +87,7 @@ public class Keypad : MonoBehaviour
     
     public void Number(int number)
     {
-        if (Ans.text.Length >= 6 && Ans.text != "CORRECT" && Ans.text != "INCORRECT") return;
+        if (Ans.text.Length >= 4 && Ans.text != "CORRECT" && Ans.text != "INCORRECT") return;
         if (!isCorrect && !isCooldown)
         {
             Ans.text += number.ToString();
@@ -99,8 +104,9 @@ public class Keypad : MonoBehaviour
         if (Ans.text == Answer)
         {
             Ans.text = "CORRECT";
-            Door.SetActive(false);
+           
             isCorrect = true;
+            Door.SetActive(false);
             StartCoroutine(DisableKeypad());
         }
         else
@@ -134,10 +140,12 @@ public class Keypad : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    
+
+    public Analytic _analytic;
     private IEnumerator IncorrectCooldown()
     {
         Ans.text = "INCORRECT";
+        _analytic.PlayerPuzzle(1);
         isCooldown = true;
         yield return new WaitForSeconds(1f);
         Ans.text = "";
@@ -156,4 +164,34 @@ public class Keypad : MonoBehaviour
             Ans.text = Ans.text.Substring(0, Ans.text.Length - 1);
         }
     }
+    
+    // private async void Initialized()
+    // {
+    //     await UnityServices.InitializeAsync();
+    //     AnalyticsService.Instance.StartDataCollection();
+    // }
+    // public void PlayerPuzzleCount(string playerMakingPuzzle,int playerPuzzleCount)
+    // {
+    //     //playerPuzzleCount++;
+    //     CustomEvent customEventInput = new CustomEvent("PlayerPuzzle")
+    //     {
+    //         {"PuzzleCount", playerPuzzleCount},
+    //         {"PlayerMakingPuzzle",playerMakingPuzzle}
+    //     };
+    //
+    //     AnalyticsService.Instance.RecordEvent(customEventInput);
+    //     Debug.Log($"Player puzzle. Total wrong: {playerPuzzleCount}");
+    // }
+    // private int playerPuzzleCount = 0;
+    // private void PlayerPuzzleCount()
+    // {
+    //     playerPuzzleCount++;
+    //
+    //     // Send the death count to Unity Analytics
+    //     Analytics.SendEvent("PlayerPuzzleCount", new Dictionary<string, object> {
+    //         { "PuzzleCount", playerPuzzleCount }
+    //     });
+    //
+    //     Debug.Log($"Player puzzle. Total wrong: {playerPuzzleCount}");
+    // }
 }

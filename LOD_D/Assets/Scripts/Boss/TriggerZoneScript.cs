@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
 
 public class TriggerZoneScript : MonoBehaviour 
 {
@@ -11,7 +8,25 @@ public class TriggerZoneScript : MonoBehaviour
     public GameObject rockCountText;
     public GameObject rockVauleText;
     public GameObject attempText;
+    public BossTutorialManager tutorialManager;  // เพิ่มการอ้างอิงไปยัง tutorial manager
     
+    private void Start()
+    {
+        PreloadAssets();
+    }
+
+    private void PreloadAssets()
+    {
+        boss.SetActive(false);
+        bossHealthBar.SetActive(false);
+        rockCountText.SetActive(false);
+        rockVauleText.SetActive(false);
+        attempText.SetActive(false);
+
+        AudioManager.Instance.PreloadAudio("LargeBoss", AudioManager.AudioType.SFX);
+        AudioManager.Instance.PreloadAudio("BossBGM", AudioManager.AudioType.BGM);
+    }
+
     private void OnTriggerEnter2D(Collider2D pCol)
     {
         if (pCol.CompareTag("Player"))
@@ -23,22 +38,23 @@ public class TriggerZoneScript : MonoBehaviour
 
     private IEnumerator ActivateBossSequence()
     {
-        // เล่นเสียง SFX ก่อน
         AudioManager.Instance.PlaySFX("LargeBoss");
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
 
-        // ค่อยๆ activate UI elements
         rockCountText.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
         rockVauleText.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
         attempText.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
         bossHealthBar.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-
-        // สุดท้ายค่อย activate boss และเล่น BGM
+        
+        yield return new WaitForSeconds(0.05f);
         boss.SetActive(true);
+        
+        // แสดง tutorial ก่อนเริ่มเพลง boss
+        if (tutorialManager != null)
+        {
+            tutorialManager.ShowTutorial();
+        }
+
         AudioManager.Instance.PlayBGM("BossBGM");
     }
 }

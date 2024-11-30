@@ -29,6 +29,7 @@ public class door : MonoBehaviour
         if (other.gameObject.CompareTag("Key") && keyPickedUp)
         {
             anim.SetTrigger("open");
+            AudioManager.Instance.PlaySFX("KeyUnlock");
             locked = false;
         }
     }

@@ -78,6 +78,7 @@ public class TreasureSpawnController : MonoBehaviour
         if (!hasSpawned && treasureItem != null)
         {
             Debug.Log("Spawning Treasure");
+            AudioManager.Instance.PlaySFX("Artifact");
             StartCoroutine(PopUpAnimation());
             hasSpawned = true;
         }
@@ -93,17 +94,7 @@ public class TreasureSpawnController : MonoBehaviour
         Vector3 startPos = spawnPoint.position;
         Vector3 endPos = startPos + (Vector3.up * popUpHeight);
         Debug.Log($"End position will be: {endPos}");
-
-        // เล่น effect ถ้ามี
-        if (sparkleEffect != null)
-        {
-            Instantiate(sparkleEffect, startPos, Quaternion.identity);
-        }
-
-        if (itemAppearSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(itemAppearSound);
-        }
+        
 
         float elapsedTime = 0;
         while (elapsedTime < popUpDuration)

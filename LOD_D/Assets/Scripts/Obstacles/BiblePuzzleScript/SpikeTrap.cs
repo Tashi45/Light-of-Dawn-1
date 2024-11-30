@@ -35,9 +35,9 @@ public class SpikeTrap : MonoBehaviour
         if (movingDown)
         {
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-            
             if (transform.position.y <= startPosition.y + bottomPosition)
             {
+                //AudioManager.Instance.PlaySFX("SpikeTrap");
                 transform.position = new Vector3(transform.position.x, startPosition.y + bottomPosition, transform.position.z);
                 movingDown = false;
                 delayTimer = delayAtBottom;

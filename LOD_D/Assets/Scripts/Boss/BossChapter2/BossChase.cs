@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BossChase : MonoBehaviour
 {
+    private Animator animator;
+    
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float detectionRange = 10f;
@@ -35,6 +37,7 @@ public class BossChase : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         AudioManager.Instance.PlaySFX("LargeBoss");
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
@@ -87,6 +90,11 @@ public class BossChase : MonoBehaviour
     private IEnumerator PrepareLaserAttack()
     {
         isPreparingLaser = true;
+        
+        if (animator != null)
+        {
+            //animator.SetBool("isAttack", true);
+        }
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
@@ -107,6 +115,11 @@ public class BossChase : MonoBehaviour
         ShootLaser();
         lastLaserTime = Time.time;
         isPreparingLaser = false;
+        
+        if (animator != null)
+        {
+            //animator.SetBool("isAttack", false);
+        }
     }
     
     private void ShootLaser()
@@ -114,7 +127,7 @@ public class BossChase : MonoBehaviour
         if (laserPrefab != null && laserSpawnPoint != null)
         {
             Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("LaserShot");
+            AudioManager.Instance.PlaySFX("Outgoing");
         }
     }
 
