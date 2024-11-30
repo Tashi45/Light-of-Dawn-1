@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
     public Slider ambientSlider;
+    
 
     private void Start()
     {
@@ -21,7 +22,9 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        
         SceneManager.LoadScene(1);
+        
     }
     public void OnQuitClicked()
     {
